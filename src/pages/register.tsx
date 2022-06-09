@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,13 +11,22 @@ import {
   Container,
   FormHelperText,
   Link,
+  Stack,
   TextField,
   Typography
 } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+import useAuth from '../hooks/useAuth';
+import { userDataKeys } from '../hooks/types';
+
+var pick = require('lodash.pick');
 
 const Register = () => {
   const router = useRouter();
+
+  const { user, signUp } = useAuth();
+  const [error, setError] = useState<string>('');
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -55,16 +65,24 @@ const Register = () => {
           'This field must be checked'
         )
     }),
-    onSubmit: () => {
-      router.push('/');
+    onSubmit: async () => {
+      signUp(formik.values.email, formik.values.password, pick(formik.values, userDataKeys))
+        .catch(error => {
+          formik.setSubmitting(false);
+          setError(error.message);
+        });
     }
   });
+
+  if(user) {
+    router.push('/');
+  }
 
   return (
     <>
       <Head>
         <title>
-          Register | Material Kit
+          Register
         </title>
       </Head>
       <Box
@@ -77,33 +95,13 @@ const Register = () => {
         }}
       >
         <Container maxWidth="sm">
-          <NextLink
-            href="/"
-            passHref
-          >
-            <Button
-              component="a"
-              startIcon={<ArrowBackIcon fontSize="small" />}
-            >
-              Dashboard
-            </Button>
-          </NextLink>
           <form onSubmit={formik.handleSubmit}>
-            <Box sx={{ my: 3 }}>
-              <Typography
-                color="textPrimary"
-                variant="h4"
-              >
-                Create a new account
-              </Typography>
-              <Typography
-                color="textSecondary"
-                gutterBottom
-                variant="body2"
-              >
-                Use your email to create a new account
-              </Typography>
-            </Box>
+            <Typography
+              color="textPrimary"
+              variant="h4"
+            >
+              Create a New Account
+            </Typography>
             <TextField
               error={Boolean(formik.touched.firstName && formik.errors.firstName)}
               fullWidth
@@ -191,7 +189,10 @@ const Register = () => {
                 {formik.errors.policy}
               </FormHelperText>
             )}
-            <Box sx={{ py: 2 }}>
+            <Stack
+              py={2}
+              spacing={1}
+            >
               <Button
                 color="primary"
                 disabled={formik.isSubmitting}
@@ -200,9 +201,15 @@ const Register = () => {
                 type="submit"
                 variant="contained"
               >
-                Sign Up Now
+                Sign Up
               </Button>
-            </Box>
+              <Typography 
+                textAlign='center' 
+                color='error'
+              >
+                {error}
+              </Typography>
+            </Stack>
             <Typography
               color="textSecondary"
               variant="body2"

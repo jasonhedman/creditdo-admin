@@ -28,9 +28,9 @@ export const NavItem = (props) => {
           startIcon={icon}
           disableRipple
           sx={{
-            backgroundColor: active && 'rgba(255,255,255, 0.08)',
+            backgroundColor: active && '#FFF',
             borderRadius: 1,
-            color: active ? 'secondary.main' : 'neutral.300',
+            color: active ? 'primary.main' : '#FFF',
             fontWeight: active && 'fontWeightBold',
             justifyContent: 'flex-start',
             px: 3,
@@ -38,10 +38,10 @@ export const NavItem = (props) => {
             textTransform: 'none',
             width: '100%',
             '& .MuiButton-startIcon': {
-              color: active ? 'secondary.main' : 'neutral.400'
+              color: active ? 'primary.main' : '#FFF'
             },
             '&:hover': {
-              backgroundColor: 'rgba(255,255,255, 0.08)'
+              backgroundColor: active ? 'rgba(255,255,255, 0.95)' : 'rgba(255,255,255, 0.2)'
             }
           }}
         >

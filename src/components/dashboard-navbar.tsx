@@ -1,19 +1,22 @@
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip } from '@mui/material';
+import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip, Typography, Theme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import { Bell as BellIcon } from '../icons/bell';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
 import { Users as UsersIcon } from '../icons/users';
 
-const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
+import useAuth from '../hooks/useAuth';
+
+const DashboardNavbarRoot = styled(AppBar)(({ theme } : {theme: Theme}) => ({
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[3]
 }));
 
 export const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
+
+  const { signOut, user } = useAuth();
 
   return (
     <>
@@ -32,7 +35,8 @@ export const DashboardNavbar = (props) => {
           sx={{
             minHeight: 64,
             left: 0,
-            px: 2
+            px: 2,
+            gap: 1
           }}
         >
           <IconButton
@@ -46,18 +50,13 @@ export const DashboardNavbar = (props) => {
           >
             <MenuIcon fontSize="small" />
           </IconButton>
-          <Tooltip title="Search">
-            <IconButton sx={{ ml: 1 }}>
-              <SearchIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
           <Box sx={{ flexGrow: 1 }} />
-          <Tooltip title="Contacts">
+          <Tooltip title="Notifications">
             <IconButton sx={{ ml: 1 }}>
               <UsersIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Notifications">
+          <Tooltip title="Mail">
             <IconButton sx={{ ml: 1 }}>
               <Badge
                 badgeContent={4}
@@ -68,6 +67,12 @@ export const DashboardNavbar = (props) => {
               </Badge>
             </IconButton>
           </Tooltip>
+          {user && (<Typography 
+            variant='body2' 
+            color='text.primary'
+          >
+            Welcome, {user.firstName} {user.lastName}!
+          </Typography>)}
           <Avatar
             sx={{
               height: 40,
@@ -75,6 +80,7 @@ export const DashboardNavbar = (props) => {
               ml: 1
             }}
             src="/static/images/avatars/avatar_1.png"
+            onClick={signOut}
           >
             <UserCircleIcon fontSize="small" />
           </Avatar>
