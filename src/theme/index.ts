@@ -132,17 +132,17 @@ export const theme = createTheme({
     }
   },
   palette: {
-    neutral: {
-      100: '#F3F4F6',
-      200: '#E5E7EB',
-      300: '#D1D5DB',
-      400: '#9CA3AF',
-      500: '#6B7280',
-      600: '#4B5563',
-      700: '#374151',
-      800: '#1F2937',
-      900: '#111827'
-    },
+    // neutral: {
+    //   100: '#F3F4F6',
+    //   200: '#E5E7EB',
+    //   300: '#D1D5DB',
+    //   400: '#9CA3AF',
+    //   500: '#6B7280',
+    //   600: '#4B5563',
+    //   700: '#374151',
+    //   800: '#1F2937',
+    //   900: '#111827'
+    // },
     action: {
       active: '#6B7280',
       focus: 'rgba(55, 65, 81, 0.12)',
@@ -152,8 +152,8 @@ export const theme = createTheme({
       disabled: 'rgba(55, 65, 81, 0.26)'
     },
     background: {
-      default: '#F9FAFC',
-      paper: '#FFFFFF'
+      paper: '#FFF',
+      default: '#FFFFFF',
     },
     divider: '#E6E8F0',
     primary: {
@@ -163,7 +163,7 @@ export const theme = createTheme({
       contrastText: '#FFFFFF'
     },
     secondary: {
-      main: '#10B981',
+      main: '#35ace2',
       light: '#3FC79A',
       dark: '#0B815A',
       contrastText: '#FFFFFF'
