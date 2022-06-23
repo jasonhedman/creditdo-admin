@@ -200,7 +200,10 @@ const DonutChart: React.FC<Props> = ({
       >
         <g className={`${className}-arcs`}>
           {dataWithRenderProps.map((item) => (
-            <ArcPath item={item} key={`arcpath${item.index}`} />
+            <ArcPath 
+              item={item} 
+              key={`arcpath${item.index}`} 
+            />
           ))}
         </g>
         {selected && (
@@ -226,7 +229,10 @@ const DonutChart: React.FC<Props> = ({
         {legend && (
           <g className={`${className}-legend`}>
             {dataWithRenderProps.map((item) => (
-              <LegendItem key={`legenditem${item.index}`} item={item} />
+              <LegendItem 
+                key={`legenditem${item.index}`} 
+                item={item} 
+              />
             ))}
           </g>
         )}

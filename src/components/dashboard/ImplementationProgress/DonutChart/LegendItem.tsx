@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+
 import { DonutChartContext, ItemWithRenderProps } from './DonutChart';
 
 export type Props = { item: ItemWithRenderProps };
@@ -27,7 +28,11 @@ const LegendItem: React.FC<Props> = ({ item }) => {
         index * yOffset * sqUnit
       })`}
     >
-      <rect {...restItemRenderProps} height={sqUnit} width={sqUnit} />
+      <rect 
+        {...restItemRenderProps} 
+        height={sqUnit} 
+        width={sqUnit} 
+      />
       <text
         className={`${className}-${classSuffix}-label ${classNames}`}
         dy=".35em"
