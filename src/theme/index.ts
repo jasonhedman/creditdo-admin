@@ -1,5 +1,22 @@
 import { createTheme } from '@mui/material';
 
+declare module '@mui/material/styles' {
+  // allow configuration using `createTheme`
+  interface PaletteOptions {
+    neutral: {
+      100: string,
+      200: string,
+      300: string,
+      400: string,
+      500: string,
+      600: string,
+      700: string,
+      800: string,
+      900: string
+    };
+  }
+}
+
 export const theme = createTheme({
   breakpoints: {
     values: {
@@ -132,17 +149,17 @@ export const theme = createTheme({
     }
   },
   palette: {
-    // neutral: {
-    //   100: '#F3F4F6',
-    //   200: '#E5E7EB',
-    //   300: '#D1D5DB',
-    //   400: '#9CA3AF',
-    //   500: '#6B7280',
-    //   600: '#4B5563',
-    //   700: '#374151',
-    //   800: '#1F2937',
-    //   900: '#111827'
-    // },
+    neutral: {
+      100: '#F3F4F6',
+      200: '#E5E7EB',
+      300: '#D1D5DB',
+      400: '#9CA3AF',
+      500: '#6B7280',
+      600: '#4B5563',
+      700: '#374151',
+      800: '#1F2937',
+      900: '#111827'
+    },
     action: {
       active: '#6B7280',
       focus: 'rgba(55, 65, 81, 0.12)',

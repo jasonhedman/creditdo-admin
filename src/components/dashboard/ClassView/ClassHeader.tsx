@@ -31,8 +31,17 @@ const ClassHeader : React.FC<Props> = ({ isOpen, setIsOpen }) => {
         >
             {
                 isOpen 
-                    ? <KeyboardArrowUpIcon /> 
-                    : <KeyboardArrowDownIcon />
+                    ? (
+                        <KeyboardArrowUpIcon 
+                            color='secondary'
+                        /> 
+                    ) : (
+                        <KeyboardArrowDownIcon 
+                            sx={{
+                                color: '#9CA3AF',
+                            }}
+                        />
+                    )
             }
         </IconButton>
     </Stack>

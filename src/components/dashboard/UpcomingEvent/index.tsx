@@ -4,14 +4,19 @@ import SectionContainer from '../utility/SectionContainer';
 import EventInfo from './EventInfo';
 import Students from './Students';
 
-const UpcomingEvent = () => {
+interface Props {
+    compact?: boolean
+}
+
+const UpcomingEvent : React.FC<Props> = ({ compact }) => {
 
     return (
         <SectionContainer
             title='Upcoming Event'
+            compact={compact}
         >
             <EventInfo />
-            <Students />
+            {!compact && <Students />}
         </SectionContainer>
     )
 }

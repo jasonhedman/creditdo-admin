@@ -7,9 +7,10 @@ import SectionHeader from './SectionHeader';
 interface Props {
     title: string;
     children: React.ReactNode;
+    compact?: boolean;
 }
 
-const SectionContainer : React.FC<Props> = ({ title, children}) => {
+const SectionContainer : React.FC<Props> = ({ title, children, compact }) => {
   return (
     <Stack
         spacing={2}
@@ -17,6 +18,7 @@ const SectionContainer : React.FC<Props> = ({ title, children}) => {
     >
         <SectionHeader
             title={title}
+            compact={compact}
         />
         <Stack
           flex={1}

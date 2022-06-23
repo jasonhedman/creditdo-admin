@@ -2,7 +2,7 @@ import React from 'react'
 
 import Box from '@mui/material/Box'
 
-export type Status = 'completed' | 'pastDue' | 'notStarted'
+import type { Status } from './types'
 
 interface Props {
     isFirst?: boolean;
@@ -28,7 +28,7 @@ const ProgressStep : React.FC<Props> = ({isFirst, isLast, status, selected, onCl
             onClick={onClick}
             sx={{
                 backgroundColor: backgroundColor[status],
-                border: selected ? 2 : 0,
+                border: selected ? 4 : 0,
                 borderRadius: `${borderLeftRadius} ${borderRightRadius} ${borderRightRadius} ${borderLeftRadius}`,
                 height: 30,
                 flex: 1,

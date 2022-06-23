@@ -143,8 +143,9 @@ const DonutChart: React.FC<Props> = ({
               isSelected ? 'selected' : ''
             } ${isToggled ? 'toggled' : ''}`.trim(),
             fill: isEmpty ? emptyColor : colorFunction(colors, index),
-            opacity: isSelected && !toggleSelect ? 0.5 : 1,
-            stroke: isEmpty ? emptyColor : strokeColor,
+            stroke: '#000',
+            opacity: 1,
+            strokeWidth: isSelected ? 2 : 0,
             clickHandlers: interactive
               ? {
                   onClick: () => {
@@ -209,18 +210,26 @@ const DonutChart: React.FC<Props> = ({
         {selected && (
           <g className={`${className}-innertext`}>
             <text
-              className={`${className}-innertext-label`}
+              // className={`${className}-innertext-label`}
               x={graphWidth / 2}
               y="45%"
               textAnchor="middle"
+              style={{
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+              }}
             >
               {selected.label}
             </text>
             <text
-              className={`${className}-innertext-value`}
+              // className={`${className}-innertext-value`}
               x={graphWidth / 2}
               y="60%"
               textAnchor="middle"
+              style={{
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+              }}
             >
               {formatValues(selected.value, total)}
             </text>

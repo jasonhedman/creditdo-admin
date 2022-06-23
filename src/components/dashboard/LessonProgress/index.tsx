@@ -3,10 +3,15 @@ import React from 'react'
 import SectionContainer from '../utility/SectionContainer'
 import ProgressBar from './ProgressBar'
 
-const LessonProgress = () => {
+interface Props {
+  compact?: boolean
+}
+
+const LessonProgress : React.FC<Props> = ({ compact }) => {
   return (
     <SectionContainer
         title="Lesson Progress"
+        compact={compact}
     >
         <ProgressBar />
     </SectionContainer>

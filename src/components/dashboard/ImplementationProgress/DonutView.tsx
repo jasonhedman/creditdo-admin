@@ -30,7 +30,11 @@ const colors = [
   '#9fc440',
 ];
 
-const DonutView : React.FC = () => {
+interface Props {
+  compact?: boolean;
+}
+
+const DonutView : React.FC<Props> = ({ compact }) => {
   return (
     <Stack 
       direction="row"
@@ -41,8 +45,8 @@ const DonutView : React.FC = () => {
         colors={colors}
         strokeColor={null}
         formatValues={(value) => `${value}%`}
-        height={200}
-        width={200}
+        height={compact ? 150 : 200}
+        width={compact ? 150 : 200}
         legend={false}
       />
     </Stack>

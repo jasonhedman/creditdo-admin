@@ -2,15 +2,20 @@ import React from 'react'
 
 import SectionContainer from '../utility/SectionContainer';
 import DonutView from './DonutView';
-import ToDos from './ToDos'
 
-const ImplementationProgress = () => {
+interface Props {
+  compact?: boolean
+}
+
+const ImplementationProgress : React.FC<Props> = ({ compact }) => {
   return (
     <SectionContainer
         title='Implementation Progress'
+        compact={compact}
     >
-        <DonutView />
-        <ToDos />
+      <DonutView 
+        compact={compact}
+      />
     </SectionContainer>
   )
 }

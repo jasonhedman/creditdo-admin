@@ -23,7 +23,10 @@ const toDos = [
 
 const ToDos = () => {
   return (
-    <Stack spacing={1}>
+    <Stack 
+        flex={1}
+        spacing={1}
+    >
         <Typography
             variant="h6"
         >

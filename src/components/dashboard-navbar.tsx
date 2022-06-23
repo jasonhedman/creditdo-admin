@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip, Typography, Theme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Bell as BellIcon } from '../icons/bell';
+import EmailIcon from '@mui/icons-material/Email';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
-import { Users as UsersIcon } from '../icons/users';
 
 import useAuth from '../hooks/useAuth';
 
@@ -36,7 +36,6 @@ export const DashboardNavbar = (props) => {
             minHeight: 64,
             left: 0,
             px: 2,
-            gap: 1
           }}
         >
           <IconButton
@@ -53,26 +52,31 @@ export const DashboardNavbar = (props) => {
           <Box sx={{ flexGrow: 1 }} />
           <Tooltip title="Notifications">
             <IconButton sx={{ ml: 1 }}>
-              <UsersIcon fontSize="small" />
+              <NotificationsIcon 
+                fontSize="small"
+                color='primary'
+              />
             </IconButton>
           </Tooltip>
           <Tooltip title="Mail">
-            <IconButton sx={{ ml: 1 }}>
-              <Badge
-                badgeContent={4}
-                color="primary"
-                variant="dot"
-              >
-                <BellIcon fontSize="small" />
-              </Badge>
+            <IconButton>
+              <EmailIcon 
+                fontSize="small"
+                color='primary'
+              />
             </IconButton>
           </Tooltip>
-          {user && (<Typography 
-            variant='body2' 
-            color='text.primary'
-          >
-            Welcome, {user.firstName} {user.lastName}!
-          </Typography>)}
+          {user && (
+            <Typography 
+              variant='body2' 
+              color='text.primary'
+              sx={{
+                ml: 1,
+              }}
+            >
+              Welcome, {user.firstName} {user.lastName}!
+            </Typography>
+          )}
           <Avatar
             sx={{
               height: 40,
