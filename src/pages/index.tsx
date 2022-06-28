@@ -13,7 +13,18 @@ const Dashboard = () => {
 
   const { auth, loading } = useAuth();
 
-  if (loading) return <CircularProgress />;
+  if (loading) return (
+    <Stack
+      alignItems='center'
+      justifyContent='center'
+      sx={{
+        height: '100%',
+        width: '100%',
+      }}
+    >
+      <CircularProgress />
+    </Stack>
+  );
   if (!auth) {
     router.push('/login'); 
     return null;

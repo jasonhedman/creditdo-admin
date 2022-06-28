@@ -14,6 +14,7 @@ const UpcomingEvent : React.FC<Props> = ({ compact }) => {
         <SectionContainer
             title='Upcoming Event'
             compact={compact}
+            navigateTo='/work'
         >
             <EventInfo />
             {!compact && (

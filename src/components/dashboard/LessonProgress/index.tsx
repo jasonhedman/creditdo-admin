@@ -12,6 +12,7 @@ const LessonProgress : React.FC<Props> = ({ compact }) => {
     <SectionContainer
         title="Lesson Progress"
         compact={compact}
+        navigateTo="/learn"
     >
         <ProgressBar />
     </SectionContainer>

@@ -12,6 +12,7 @@ const ImplementationProgress : React.FC<Props> = ({ compact }) => {
     <SectionContainer
         title='Implementation Progress'
         compact={compact}
+        navigateTo='/learn'
     >
       <DonutView 
         compact={compact}

@@ -14,24 +14,19 @@ const viewOptions = [
 ] as const;
 type ViewOptionTypes = typeof viewOptions[number];
 
-const displayOptions = [
-  "Metrics",
-  "Roster",
-  "Leaderboard"
-] as const;
-type DisplayOptionTypes = typeof displayOptions[number];
+import { DisplayOptionTypes, displayOptions } from '../../pages/classes';
 
-const Header : React.FC = () => {
+interface Props {
+  display: DisplayOptionTypes,
+  handleDisplayChange: (display: DisplayOptionTypes) => void
+}
+
+const Header : React.FC<Props> = ({ display, handleDisplayChange }) => {
 
   const [view, setView] = useState<ViewOptionTypes>('Class');
-  const [display, setDisplay] = useState<DisplayOptionTypes>(displayOptions[0]);
 
   const handleViewChange = (event: SelectChangeEvent) => {
     setView(event.target.value as ViewOptionTypes);
-  }
-
-  const handleDisplayChange = (event: SelectChangeEvent) => {
-    setDisplay(event.target.value as DisplayOptionTypes);
   }
 
   return (
@@ -80,7 +75,7 @@ const Header : React.FC = () => {
             <Button
               key={index}
               variant='text'
-              onClick={() => setDisplay(option)}
+              onClick={() => handleDisplayChange(option)}
               sx={{
                 color: display === option ? 'primary.main' : 'text.primary',
               }}
