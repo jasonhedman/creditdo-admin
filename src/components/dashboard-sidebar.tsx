@@ -17,17 +17,17 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/customers',
+    href: '/classes',
     icon: (<GroupIcon fontSize="small" />),
     title: 'Classes'
   },
   {
-    href: '/products',
+    href: '/learn',
     icon: (<SchoolIcon fontSize="small" />),
     title: 'Learn'
   },
   {
-    href: '/account',
+    href: '/work',
     icon: (<HandshakeIcon fontSize="small" />),
     title: 'Work'
   }

@@ -6,8 +6,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 
 const viewOptions = [
     'Class'
@@ -31,7 +29,7 @@ const Header : React.FC = () => {
             <Typography
                 variant='h5'
             >
-                Dashboard
+                Work
             </Typography>
             <FormControl>
                 <InputLabel>
@@ -54,12 +52,6 @@ const Header : React.FC = () => {
                     }
                 </Select>
             </FormControl>
-            <Box flex={1}/>
-            <Button
-                variant='contained'
-            >
-                Create Class
-            </Button>
         </Stack>
     )
 }

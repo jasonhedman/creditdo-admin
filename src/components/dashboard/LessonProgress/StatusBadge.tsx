@@ -34,7 +34,7 @@ const StatusBadge : React.FC<Props> = ({ status }) => {
         <Typography
             variant='body2'
             fontWeight='bold'
-            color={(status === 'completed' || status === 'pastDue') ? 'white' : 'black'}
+            color={(status === 'notStarted') ? 'black' : 'white'}
         >
             {displayText[status]}
         </Typography>

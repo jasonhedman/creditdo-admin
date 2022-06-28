@@ -4,9 +4,12 @@ import { useTheme } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
-const numStudents = 10;
+interface Props {
+    numStudents: number;
+    size: number;
+}
 
-const Students = () => {
+const UserAvatars : React.FC<Props> = ({ numStudents, size }) => {
 
     const theme = useTheme();
 
@@ -21,28 +24,29 @@ const Students = () => {
                         <Box
                             key={i}
                             sx={{
-                                height: 40,
-                                width: 40,
+                                height: size,
+                                width: size,
                                 borderRadius: '50%',
                                 border: '1px solid #FFF',
                                 backgroundColor: theme.palette.secondary.main,
-                                marginLeft: -1.75
+                                marginLeft: `-${size / 3}px`
                             }}
                         />
                     ))
                 }
                 <Box
                     sx={{
-                        height: 40,
-                        width: 40,
+                        height: size,
+                        width: size,
                         borderRadius: '50%',
                         border: '1px solid #FFF',
                         backgroundColor: theme.palette.secondary.main,
-                        marginLeft: -1.75,
+                        marginLeft: `-${size / 3}px`,
                         color: '#FFF',
                         display: 'flex',
                         justifyContent: 'center',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        fontSize: size / 2
                     }}
                 >
                     +{numStudents - 5}
@@ -52,4 +56,4 @@ const Students = () => {
     )
 }
 
-export default Students;
+export default UserAvatars;

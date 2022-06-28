@@ -2,7 +2,7 @@ import React from 'react'
 
 import SectionContainer from '../utility/SectionContainer';
 import EventInfo from './EventInfo';
-import Students from './Students';
+import UserAvatars from '../../utility/UserAvatars';
 
 interface Props {
     compact?: boolean
@@ -16,7 +16,12 @@ const UpcomingEvent : React.FC<Props> = ({ compact }) => {
             compact={compact}
         >
             <EventInfo />
-            {!compact && <Students />}
+            {!compact && (
+                <UserAvatars 
+                    numStudents={10} 
+                    size={40}
+                />
+            )}
         </SectionContainer>
     )
 }
