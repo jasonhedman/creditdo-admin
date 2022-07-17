@@ -6,110 +6,62 @@ import { Box, Container, Stack } from '@mui/material';
 
 import { DashboardLayout } from '../components/dashboard-layout';
 import Header from '../components/learn/Header';
-import WeekView from '../components/learn/WeekView';
 
-import { Lesson } from '../components/learn/types';
+import { NextPage } from 'next';
+import useClasses from '../hooks/useClasses';
+import ClassView from '../components/learn/ClassView';
 
-interface Week {
-    weekNumber: number;
-    lessons: Lesson[];
-}
+const Learn : NextPage = () => {
 
-const weeks : Week[] = [
-    {
-        weekNumber: 1,
-        lessons: [
-            {
-                title: 'Lesson 1',
-                duration: 2,
-                date: new Date(),
-                status: 'completed'
-            },
-            {
-                title: 'Lesson 2',
-                duration: 2,
-                date: new Date(),
-                status: 'completed'
-            },
-            {
-                title: 'Lesson 3',
-                duration: 1,
-                date: new Date(),
-                status: 'completed'
-            },
-        ]
-    },
-    {
-        weekNumber: 2,
-        lessons: [
-            {
-                title: 'Lesson 4',
-                duration: 2,
-                date: new Date(),
-                status: 'pastDue'
-            },
-            {
-                title: 'Lesson 5',
-                duration: 2,
-                date: new Date(),
-                status: 'notStarted'
-            },
-            {
-                title: 'Lesson 6',
-                duration: 1,
-                date: new Date(),
-                status: 'notStarted'
-            },
-        ]
-    },
-]
+    const { classes } = useClasses();
 
-const Learn = () => {
-  return (
-    <>
-        <Head>
-            <title>
-                Learn | Credit Do
-            </title>
-        </Head>
-        <Box
-            component="main"
-            sx={{
-                flexGrow: 1,
-                py: 4
-            }}
-        >
-            <Container 
-                maxWidth={false}
+    return (
+        <DashboardLayout>
+            <Head>
+                <title>
+                    Learn | Credit Do
+                </title>
+            </Head>
+            <Box
+                component="main"
+                sx={{
+                    flexGrow: 1,
+                    py: 4
+                }}
             >
-                <Stack
-                    spacing={4}
+                <Container 
+                    maxWidth={false}
                 >
-                    <Header />
                     <Stack
-                        spacing={8}
+                        spacing={4}
                     >
-                        {
-                            weeks.map(week => (
-                                <WeekView
-                                    key={week.weekNumber}
-                                    weekNumber={week.weekNumber}
-                                    lessons={week.lessons}
-                                />
-                            ))
-                        }
+                        <Header />
+                        <Stack
+                            spacing={8}
+                        >
+                            {
+                                classes.map(classData => (
+                                    <ClassView
+                                        key={classData.id}
+                                        classData={classData}
+                                    />
+                                ))
+                            }
+                            {/* {
+                                weeks.map(week => (
+                                    <WeekView
+                                        key={week.weekNumber}
+                                        weekNumber={week.weekNumber}
+                                        lessons={week.lessons}
+                                    />
+                                ))
+                            } */}
+                        </Stack>
                     </Stack>
-                </Stack>
-            </Container>
-        </Box>
-    </>
-  )
+                </Container>
+            </Box>
+        </DashboardLayout>
+    )
 }
-
-Learn.getLayout = (page) => (
-    <DashboardLayout>
-      {page}
-    </DashboardLayout>
-  );
 
 export default Learn

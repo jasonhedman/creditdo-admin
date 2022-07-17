@@ -1,20 +1,25 @@
-import React from 'react'
+import { FC } from 'react'
 
 import SectionContainer from '../utility/SectionContainer'
 import ProgressBar from './ProgressBar'
 
+import { Lesson } from '../../../hooks/useLessons';
+
 interface Props {
-  compact?: boolean
+  compact?: boolean;
+  lessons: Lesson[];
 }
 
-const LessonProgress : React.FC<Props> = ({ compact }) => {
+const LessonProgress : FC<Props> = ({ compact, lessons }) => {
   return (
     <SectionContainer
         title="Lesson Progress"
         compact={compact}
         navigateTo="/learn"
     >
-        <ProgressBar />
+        <ProgressBar 
+          lessons={lessons}
+        />
     </SectionContainer>
   )
 }

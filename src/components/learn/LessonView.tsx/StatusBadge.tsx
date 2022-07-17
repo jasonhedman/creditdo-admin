@@ -2,27 +2,33 @@ import React from 'react'
 
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
+import ClearIcon from '@mui/icons-material/Clear';
+import CheckIcon from '@mui/icons-material/Check';
 
 import type { Status } from '../types' 
+import { IconButton } from '@mui/material';
 
 interface Props {
   status: Status;
+  complete: () => Promise<void>;
+  revert: () => Promise<void>;
 }
 
-const backgroundColor = {
-  completed: '#9fc440',
-  pastDue: '#de483a',
-  notStarted: '#dcdcdc',
-}
+const StatusBadge : React.FC<Props> = ({ status, complete, revert }) => {
 
-const displayText = {
-  completed: 'Completed',
-  pastDue: 'Past Due',
-  notStarted: 'Not Started',
-}
+  const backgroundColor = {
+    completed: '#9fc440',
+    pastDue: '#de483a',
+    notStarted: '#dcdcdc',
+  }
+  
+  const displayText = {
+    completed: 'Completed',
+    pastDue: 'Past Due',
+    notStarted: 'Not Started',
+  }
 
-const StatusBadge : React.FC<Props> = ({ status }) => {
   return (
     <Stack
       direction='row'
@@ -35,21 +41,40 @@ const StatusBadge : React.FC<Props> = ({ status }) => {
         backgroundColor: backgroundColor[status],
       }}
     >
-        <Typography
-          variant='body2'
-          fontWeight='bold'
-          sx={{
-            color: status === 'notStarted' ? '#000' : '#fff',
-          }}
-        >
-            {displayText[status]}
-        </Typography>
-        <KeyboardArrowDownIcon 
-          fontSize='small'
-          sx={{
-            color: status === 'notStarted' ? '#000' : '#fff',
-          }}
-        />
+      <Typography
+        variant='body2'
+        fontWeight='bold'
+        sx={{
+          color: status === 'notStarted' ? '#000' : '#fff',
+        }}
+      >
+          {displayText[status]}
+      </Typography>
+      {
+        status === 'completed' ? (
+          <IconButton
+            onClick={revert}
+            size='small'
+          >
+            <ClearIcon
+              fontSize='small'
+              sx={{color: '#fff'}}
+            />
+          </IconButton>
+        ) : (
+          <IconButton
+            size='small'
+            onClick={complete}
+          >
+            <CheckIcon
+              fontSize='small'
+              sx={{
+                color: status === 'notStarted' ? '#000' : '#fff',
+              }}
+            />
+          </IconButton>
+        )
+      }
     </Stack>
   )
 }

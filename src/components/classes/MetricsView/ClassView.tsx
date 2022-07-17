@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack';
 
 import ClassHeader from './ClassHeader'
@@ -27,15 +28,20 @@ const ClassView = () => {
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
             />
-            <HeaderRow />
-            {
-                events.map(event => (
-                    <EventRow
-                        key={event.id}
-                        // event={event}
-                    />
-                ))
-            }
+            <Grid 
+                container
+                spacing={2}
+            >
+                <HeaderRow />
+                {
+                    events.map(event => (
+                        <EventRow
+                            key={event.id}
+                            // event={event}
+                        />
+                    ))
+                }
+            </Grid>
         </Stack>
     )
 }

@@ -6,6 +6,7 @@ import {
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut as authSignOut,
+    updateEmail,
     User
 } from 'firebase/auth';
 
@@ -28,6 +29,7 @@ interface ReturnType {
     signUp: (email: string, password: string, userData: UserData) => Promise<void>;
     signIn: (email: string, password: string) => Promise<void>;
     signOut: () => Promise<void>;
+    updateUser: (userData: UserData) => Promise<void>;
 }
 
 const init : ReturnType = {
@@ -37,6 +39,7 @@ const init : ReturnType = {
     signUp: async (email: string, password: string, userData: UserData) => {},
     signIn: async (email: string, password: string) => {},
     signOut: async () => {},
+    updateUser: async (userData: UserData) => {}
 }
 
 const useAuth = () : ReturnType => {
@@ -59,6 +62,14 @@ const useAuth = () : ReturnType => {
         await authSignOut(auth);
     }
 
+    const updateUser = async (userData: UserData) => {
+        if(userData.email !== authObj.email) {
+            await updateEmail(authObj, userData.email);
+        }
+        await setDoc(doc(db, 'users', authObj.uid), userData);
+    }
+
+
     return {
         auth: authObj,
         user: userData,
@@ -66,6 +77,7 @@ const useAuth = () : ReturnType => {
         signUp,
         signIn,
         signOut,
+        updateUser
     }
 }
 

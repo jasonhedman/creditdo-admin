@@ -7,7 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import SchoolIcon from '@mui/icons-material/School';
 import HandshakeIcon from '@mui/icons-material/Handshake';
-import { Logo } from './logo';
+import Logo from './logo';
 import { NavItem } from './nav-item';
 
 const items = [
@@ -72,10 +72,7 @@ export const DashboardSidebar = (props) => {
             >
               <a>
                 <Logo
-                  sx={{
-                    height: 42,
-                    width: 42
-                  }}
+                  size={lgUp ? 75 : 50}
                 />
               </a>
             </NextLink>

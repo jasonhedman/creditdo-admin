@@ -1,7 +1,7 @@
 export const colWidths = [
     3,
-    4,
-    1,
+    3,
+    2,
     2,
     2
 ]

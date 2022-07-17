@@ -1,17 +1,23 @@
 import Head from 'next/head';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { Box, Container, CircularProgress, Stack } from '@mui/material';
-import { DashboardLayout } from '../components/dashboard-layout';
 
-import useAuth from '../hooks/useAuth';
+import { Box, Container, CircularProgress, Stack } from '@mui/material';
+
+import { DashboardLayout } from '../components/dashboard-layout';
 import Header from '../components/dashboard/Header';
 import ClassView from '../components/dashboard/ClassView';
 
-const Dashboard = () => {
+import useClasses from '../hooks/useClasses';
+import useAuth from '../hooks/useAuth';
+
+const Dashboard : NextPage = () => {
 
   const router = useRouter();
 
   const { auth, loading } = useAuth();
+
+  const { classes } = useClasses();
 
   if (loading) return (
     <Stack
@@ -31,7 +37,7 @@ const Dashboard = () => {
   }
 
   return (
-    <>
+    <DashboardLayout>
       <Head>
         <title>
           Dashboard | Credit Do
@@ -51,18 +57,19 @@ const Dashboard = () => {
             spacing={2}
           >
             <Header />
-            <ClassView />
+            {
+              classes.map(classData => (
+                <ClassView
+                  key={classData.id}
+                  classData={classData}
+                />
+              ))
+            }
           </Stack>
         </Container>
       </Box>
-    </>
+    </DashboardLayout>
   );
 }
-
-Dashboard.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
 
 export default Dashboard;

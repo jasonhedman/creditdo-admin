@@ -1,7 +1,8 @@
 import React from 'react'
 
-import Stack from '@mui/material/Stack'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
 import { colWidths } from './types'
 
@@ -15,32 +16,34 @@ const rows = [
 
 const HeaderRow = () => {
   return (
-    <Stack
-        direction="row"
-        alignItems="center"
+    <Grid
+        container
         spacing={1}
     >
         {rows.map((row, index) => (
-            <Stack
+            <Grid
                 key={row}
-                direction="row"
-                alignItems="center"
-                flexGrow={colWidths[index]}
-                borderRadius={1}
-                px={1.5}
-                py={0.5}
-                sx={{
-                    backgroundColor: '#f6f6f6'
-                }}
+                item
+                xs={colWidths[index]}
             >
-                <Typography
-                    fontWeight='bold'
+                <Box
+                    alignItems="center"
+                    borderRadius={1}
+                    px={1.5}
+                    py={0.5}
+                    sx={{
+                        backgroundColor: '#f6f6f6'
+                    }}
                 >
-                    {row}
-                </Typography>
-            </Stack>
+                    <Typography
+                        fontWeight='bold'
+                    >
+                        {row}
+                    </Typography>
+                </Box>
+            </Grid>
         ))}
-    </Stack>
+    </Grid>
   )
 }
 

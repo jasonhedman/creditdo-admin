@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   Avatar,
   Box,
@@ -8,18 +10,22 @@ import {
   Divider,
   Typography
 } from '@mui/material';
+import useAuth from '../../hooks/useAuth';
 
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
-};
+import { UserData } from '../../hooks/types';
 
-export const AccountProfile = (props) => (
-  <Card {...props}>
+interface Props {
+  user: UserData;
+}
+
+export const AccountProfile: React.FC<Props> = ({ user, ...rest }) => {
+  
+  const { signOut } = useAuth();
+
+  return (
+    <Card 
+    {...rest}
+  >
     <CardContent>
       <Box
         sx={{
@@ -29,7 +35,7 @@ export const AccountProfile = (props) => (
         }}
       >
         <Avatar
-          src={user.avatar}
+          src={'/static/images/avatars/avatar_6.png'}
           sx={{
             height: 64,
             mb: 2,
@@ -41,19 +47,13 @@ export const AccountProfile = (props) => (
           gutterBottom
           variant="h5"
         >
-          {user.name}
+          {user.firstName} {user.lastName}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {`${user.city} ${user.country}`}
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body2"
-        >
-          {user.timezone}
+          {user.email}
         </Typography>
       </Box>
     </CardContent>
@@ -66,6 +66,16 @@ export const AccountProfile = (props) => (
       >
         Upload picture
       </Button>
+      <Button
+        color="error"
+        fullWidth
+        variant="text"
+        onClick={signOut}
+      >
+        Sign Out
+      </Button>
     </CardActions>
   </Card>
-);
+  )
+
+}

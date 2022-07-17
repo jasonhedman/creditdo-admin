@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 
 import Stack from '@mui/material/Stack'
 
@@ -7,7 +7,13 @@ import ImplementationProgress from '../ImplementationProgress'
 import LessonProgress from '../LessonProgress'
 import ToDos from '../ToDos';
 
-const ExpandedView = () => {
+import { Lesson } from '../../../hooks/useLessons'
+
+interface Props {
+    lessons: Lesson[];
+}
+
+const ExpandedView : FC<Props> = ({ lessons }) => {
   return (
     <Stack
         spacing={2}
@@ -23,7 +29,9 @@ const ExpandedView = () => {
             direction='row'
             spacing={2}
         >
-            <LessonProgress />
+            <LessonProgress
+                lessons={lessons}
+            />
             <ToDos />
         </Stack>
     </Stack>

@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Link from 'next/link';
 
 const viewOptions = [
     'Class'
@@ -54,12 +55,17 @@ const Header : React.FC = () => {
                     }
                 </Select>
             </FormControl>
-            <Box flex={1}/>
-            <Button
-                variant='contained'
+            <Box flex={1} />
+            <Link
+                href='/create/class'
+                passHref
             >
-                Create Class
-            </Button>
+                <Button
+                    variant='contained'
+                >
+                    Create Class
+                </Button>
+            </Link>
         </Stack>
     )
 }

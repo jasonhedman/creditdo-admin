@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, FC} from 'react'
 
 import Stack from '@mui/material/Stack'
 
@@ -6,23 +6,41 @@ import ClassHeader from './ClassHeader'
 import ExpandedView from './ExpandedView';
 import CompactView from './CompactView';
 
-const ClassView = () => {
+import { Class } from '../../../hooks/useClasses';
+import useLessons from '../../../hooks/useLessons';
 
-    const [isOpen, setIsOpen] = React.useState<boolean>(true);
+interface Props {
+    classData: Class;
+}
+
+const ClassView : FC<Props> = ({ classData }) => {
+
+    const [isOpen, setIsOpen] = useState<boolean>(true);
+
+    const { lessons, loading } = useLessons(classData.id)
 
     return (
         <Stack
             spacing={1}
         >
-            <ClassHeader 
+            <ClassHeader
+                classData={classData}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
             />
             {
-                isOpen ? (
-                    <ExpandedView />
+                loading ? (
+                    null
                 ) : (
-                    <CompactView />
+                    isOpen ? (
+                        <ExpandedView 
+                            lessons={lessons}
+                        />
+                    ) : (
+                        <CompactView
+                            lessons={lessons}
+                        />
+                    )
                 )
             }
         </Stack>

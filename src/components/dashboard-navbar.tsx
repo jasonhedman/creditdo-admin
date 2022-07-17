@@ -1,6 +1,18 @@
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip, Typography, Theme } from '@mui/material';
+import React from 'react';
+
+import Link from 'next/link';
+
+import { 
+  AppBar, 
+  Avatar, 
+  Box, 
+  IconButton, 
+  Toolbar, 
+  Tooltip, 
+  Typography, 
+  Theme,
+  styled
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import EmailIcon from '@mui/icons-material/Email';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -13,10 +25,13 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme } : {theme: Theme}) => ({
   boxShadow: theme.shadows[3]
 }));
 
-export const DashboardNavbar = (props) => {
-  const { onSidebarOpen, ...other } = props;
+interface Props {
+  onSidebarOpen: () => void;
+}
 
-  const { signOut, user } = useAuth();
+export const DashboardNavbar : React.FC<Props> = ({ onSidebarOpen, ...other}) => {
+
+  const { user } = useAuth();
 
   return (
     <>
@@ -29,7 +44,8 @@ export const DashboardNavbar = (props) => {
             lg: 'calc(100% - 280px)'
           }
         }}
-        {...other}>
+        {...other}
+      >
         <Toolbar
           disableGutters
           sx={{
@@ -67,33 +83,36 @@ export const DashboardNavbar = (props) => {
             </IconButton>
           </Tooltip>
           {user && (
-            <Typography 
-              variant='body2' 
-              color='text.primary'
-              sx={{
-                ml: 1,
-              }}
-            >
-              Welcome, {user.firstName} {user.lastName}!
-            </Typography>
+            <>
+              <Typography 
+
+                variant='body2' 
+                color='text.primary'
+                sx={{
+                  ml: 1,
+                }}
+              >
+                Welcome, {user.firstName} {user.lastName}!
+              </Typography>
+              <Link
+                href='/account'
+                passHref
+              >
+                <Avatar
+                  sx={{
+                    height: 40,
+                    width: 40,
+                    ml: 1
+                  }}
+                  src="/static/images/avatars/avatar_1.png"
+                >
+                  <UserCircleIcon fontSize="small" />
+                </Avatar>
+              </Link>
+            </>
           )}
-          <Avatar
-            sx={{
-              height: 40,
-              width: 40,
-              ml: 1
-            }}
-            src="/static/images/avatars/avatar_1.png"
-            onClick={signOut}
-          >
-            <UserCircleIcon fontSize="small" />
-          </Avatar>
         </Toolbar>
       </DashboardNavbarRoot>
     </>
   );
-};
-
-DashboardNavbar.propTypes = {
-  onSidebarOpen: PropTypes.func
 };

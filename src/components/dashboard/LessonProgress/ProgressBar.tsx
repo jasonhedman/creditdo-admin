@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, FC } from 'react'
 
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -7,43 +7,26 @@ import StatusBadge from './StatusBadge'
 import ProgressStep from './ProgressStep'
 
 import type { Status } from './types'
+import { Lesson } from '../../../hooks/useLessons'
+import { getLessonStatus } from '../../../services/utils'
 
 interface Step {
     status: Status;
     title: string;
 }
 
-const steps : Step[] = [
-    {
-        status: 'completed',
-        title: 'Lesson 1',
-    },
-    {
-        status: 'completed',
-        title: 'Lesson 2',
-    },
-    {
-        status: 'completed',
-        title: 'Lesson 3',
-    },
-    {
-        status: 'pastDue',
-        title: 'Lesson 4',
-    },
-    {
-        status: 'notStarted',
-        title: 'Lesson 5',
-    },
-    {
-        status: 'notStarted',
-        title: 'Lesson 6',
-    },
+interface Props {
+    lessons: Lesson[];
+}
 
-]
+const ProgressBar : FC<Props> = ({ lessons }) => {
 
-const ProgressBar = () => {
+    const steps : Step[] = lessons.map(lesson => ({
+        status: getLessonStatus(lesson),
+        title: lesson.title,
+    }))
 
-    const [selectedStep, setSelectedStep] = React.useState<number>(0);
+    const [selectedStep, setSelectedStep] = useState<number>(0);
 
     return (
         <Stack spacing={2}>
