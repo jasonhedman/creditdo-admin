@@ -15,6 +15,7 @@ const viewOptions = [
 type ViewOptionTypes = typeof viewOptions[number];
 
 import { DisplayOptionTypes, displayOptions } from '../../pages/classes';
+import PageHeader from '../PageHeader';
 
 interface Props {
   display: DisplayOptionTypes,
@@ -33,38 +34,9 @@ const Header : React.FC<Props> = ({ display, handleDisplayChange }) => {
     <Stack
       spacing={2}
     >
-      <Stack 
-        direction='row'
-        alignItems='center'
-        spacing={4}
-      >
-        <Typography
-          variant="h5"
-        >
-            Classes
-        </Typography>
-        <FormControl>
-            <InputLabel>
-                View
-            </InputLabel>
-            <Select
-                value={view}
-                label="View"
-                onChange={handleViewChange}
-            >
-                {
-                    viewOptions.map((option, index) => (
-                        <MenuItem 
-                            key={index} 
-                            value={option}
-                        >
-                            {option}
-                        </MenuItem>
-                    ))
-                }
-            </Select>
-        </FormControl>
-      </Stack>
+      <PageHeader 
+        title='Classes'
+      />
       <ButtonGroup 
         sx={{
           gap: 4,

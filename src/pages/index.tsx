@@ -1,15 +1,16 @@
 import Head from 'next/head';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-import { Box, Container, CircularProgress, Stack } from '@mui/material';
+import { Box, Container, CircularProgress, Stack, Button } from '@mui/material';
 
 import DashboardLayout from '../components/dashboard-layout';
-import Header from '../components/dashboard/Header';
 import ClassView from '../components/dashboard/ClassView';
 
 import useClasses from '../hooks/useClasses';
 import useAuth from '../hooks/useAuth';
+import PageHeader from '../components/PageHeader';
 
 const Dashboard : NextPage = () => {
 
@@ -56,15 +57,33 @@ const Dashboard : NextPage = () => {
           <Stack
             spacing={2}
           >
-            <Header />
-            {
-              classes.map(classData => (
-                <ClassView
-                  key={classData.id}
-                  classData={classData}
-                />
-              ))
-            }
+            <PageHeader 
+              title='Dashboard'
+              actionButton={
+                <Link
+                  href='/create/class'
+                  passHref
+                >
+                  <Button
+                      variant='contained'
+                  >
+                    Create Class
+                  </Button>
+                </Link>
+              }
+            />
+            <Stack
+              spacing={8}
+            >
+              {
+                classes.map(classData => (
+                  <ClassView
+                    key={classData.id}
+                    classData={classData}
+                  />
+                ))
+              }
+            </Stack>
           </Stack>
         </Container>
       </Box>

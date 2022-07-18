@@ -32,7 +32,7 @@ const Classes = () => {
     }
 
     return (
-        <>
+        <DashboardLayout>
             <Head>
                 <title>
                     Classes | Credit Do
@@ -61,14 +61,8 @@ const Classes = () => {
                     </Stack>
                 </Container>
             </Box>
-        </>
+        </DashboardLayout>
     )
 }
-
-Classes.getLayout = (page) => (
-    <DashboardLayout>
-        {page}
-    </DashboardLayout>
-);
 
 export default Classes

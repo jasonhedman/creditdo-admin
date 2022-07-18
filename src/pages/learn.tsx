@@ -5,11 +5,11 @@ import Head from 'next/head';
 import { Box, Container, Stack } from '@mui/material';
 
 import DashboardLayout from '../components/dashboard-layout';
-import Header from '../components/learn/Header';
 
 import { NextPage } from 'next';
 import useClasses from '../hooks/useClasses';
 import ClassView from '../components/learn/ClassView';
+import PageHeader from '../components/PageHeader';
 
 const Learn : NextPage = () => {
 
@@ -35,7 +35,9 @@ const Learn : NextPage = () => {
                     <Stack
                         spacing={4}
                     >
-                        <Header />
+                        <PageHeader 
+                            title='Learn'
+                        />
                         <Stack
                             spacing={8}
                         >

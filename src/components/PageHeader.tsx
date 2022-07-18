@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import { FC, ReactNode} from 'react'
+
+import Link from 'next/link';
 
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -8,20 +10,21 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Link from 'next/link';
 
-const viewOptions = [
-    'Class'
-] as const;
-type ViewOptionTypes = typeof viewOptions[number];
+import useClasses from '../hooks/useClasses';
 
-const Header : React.FC = () => {
+interface Props {
+    title: string;
+    actionButton?: ReactNode;
+}
 
-    const [view, setView] = useState<ViewOptionTypes>('Class');
+const PageHeader : FC<Props> = ({ title, actionButton }) => {
+
+    const { classOptions, classView, setClassView } = useClasses();
 
     const handleChange = (event: SelectChangeEvent) => {
-        setView(event.target.value as ViewOptionTypes);
-    };
+        setClassView(event.target.value as string);
+    }
 
     return (
         <Stack
@@ -32,42 +35,33 @@ const Header : React.FC = () => {
             <Typography
                 variant='h5'
             >
-                Dashboard
+                {title}
             </Typography>
             <FormControl>
                 <InputLabel>
                     View
                 </InputLabel>
                 <Select
-                    value={view}
+                    value={classView}
                     label="View"
                     onChange={handleChange}
                 >
                     {
-                        viewOptions.map((option, index) => (
-                            <MenuItem 
-                                key={index} 
-                                value={option}
+                        classOptions.map(option => (
+                            <MenuItem
+                                key={option.value}
+                                value={option.value}
                             >
-                                {option}
+                                {option.label}
                             </MenuItem>
                         ))
                     }
                 </Select>
             </FormControl>
             <Box flex={1} />
-            <Link
-                href='/create/class'
-                passHref
-            >
-                <Button
-                    variant='contained'
-                >
-                    Create Class
-                </Button>
-            </Link>
+            {actionButton}
         </Stack>
     )
 }
 
-export default Header
+export default PageHeader
