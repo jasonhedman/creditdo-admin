@@ -1,12 +1,22 @@
-import React from 'react'
+import { FC } from 'react'
 
 import { useTheme } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-const EventInfo = () => {
+import moment from 'moment';
+
+import { Event } from '../../../hooks/useEvents';
+
+interface Props {
+    event: Event
+}
+
+const EventInfo : FC<Props> = ({ event }) => {
 
     const theme = useTheme();
+
+    const date = moment(event.date.seconds * 1000);
 
     return (
         <Stack
@@ -24,12 +34,12 @@ const EventInfo = () => {
                 }}
             >
                 <Typography variant='body1'>
-                    Aug
+                    {date.format('MMM')}
                 </Typography>
                 <Typography
                     fontSize='1.25rem'
                 >
-                    24
+                    {date.format('D')}
                 </Typography>
             </Stack>
             <Stack>
@@ -37,17 +47,17 @@ const EventInfo = () => {
                     variant='body1'
                     fontWeight='bold'
                 >
-                    Target School Supply Drive
+                    {event.title}
                 </Typography>
                 <Typography
                     variant='body2'
                 >
-                    Sat, 10:00 AM
+                    {date.format('ddd, h:mm A')}
                 </Typography>
                 <Typography
                     variant='body2'
                 >
-                    400 Grand St, Manhattan, NY
+                    {event.address}
                 </Typography>
             </Stack>
         </Stack>

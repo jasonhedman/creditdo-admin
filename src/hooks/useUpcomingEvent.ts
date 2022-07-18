@@ -1,6 +1,6 @@
 
 import { db } from "../firebase/clientApp";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import { collection, CollectionReference, query, orderBy, limit, where } from "firebase/firestore";
 
 interface Time {
@@ -18,18 +18,21 @@ export interface Event {
 	poundsCollected: number;
 }
 
-const useEvents = (classId : string) => {
-    
-    const [events, loading, error] = useCollection<Event>(query(
+const now = new Date()
+
+const useUpcomingEvent = (classId : string) => {
+
+    const [events, loading, error] = useCollectionDataOnce<Event>(query(
         collection(db, "classes", classId, "events") as CollectionReference<Event>, 
-        // where('date', '>', new Date()), 
-        // orderBy('date', 'asc'), 
+        where('date', '>', now),
+        orderBy('date', 'asc'),
+        limit(1),
     ));
 
     return {
-        events: events ? events.docs.map(doc => doc.data()) : [],
+        event: events ? events[0] : null,
         loading,
     }
 }
 
-export default useEvents;
+export default useUpcomingEvent;

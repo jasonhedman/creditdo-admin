@@ -3,11 +3,11 @@ import {useState, FC} from 'react'
 import Stack from '@mui/material/Stack'
 
 import ClassHeader from './ClassHeader'
-import ExpandedView from './ExpandedView';
-import CompactView from './CompactView';
+import UpcomingEvent from '../UpcomingEvent';
+import LessonProgress from '../LessonProgress';
+import ImplementationProgress from '../ImplementationProgress';
 
 import { Class } from '../../../hooks/useClasses';
-import useLessons from '../../../hooks/useLessons';
 
 interface Props {
     classData: Class;
@@ -16,8 +16,6 @@ interface Props {
 const ClassView : FC<Props> = ({ classData }) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(true);
-
-    const { lessons, loading } = useLessons(classData.id)
 
     return (
         <Stack
@@ -28,21 +26,34 @@ const ClassView : FC<Props> = ({ classData }) => {
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
             />
-            {
-                loading ? (
-                    null
-                ) : (
-                    isOpen ? (
-                        <ExpandedView 
-                            lessons={lessons}
-                        />
-                    ) : (
-                        <CompactView
-                            lessons={lessons}
-                        />
-                    )
-                )
-            }
+            <Stack
+                direction='row'
+                spacing={2}
+            >
+                <Stack
+                    direction={isOpen ? 'column' : 'row'}
+                    spacing={isOpen ? 4 : 2}
+                    flexGrow={isOpen ? 1 : 2}
+                >
+                    <UpcomingEvent
+                        compact={!isOpen}
+                        classId={classData.id}
+                    />
+                    <LessonProgress
+                        compact={!isOpen}
+                        classId={classData.id}
+                    />
+                </Stack>
+                <Stack
+                    spacing={2}
+                    flexGrow={1}
+                >
+                    <ImplementationProgress
+                        compact={!isOpen}
+                        classId={classData.id}
+                    />
+                </Stack>
+            </Stack>
         </Stack>
     )
 }

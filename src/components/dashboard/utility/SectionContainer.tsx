@@ -14,8 +14,8 @@ interface Props {
 const SectionContainer : React.FC<Props> = ({ title, children, compact, navigateTo }) => {
   return (
     <Stack
-        spacing={2}
-        flex={1}
+      spacing={4}
+      flex={1}
     >
       <SectionHeader
           title={title}

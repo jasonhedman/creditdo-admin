@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore";
 
 import lessons from "../data/lessons";
-
+import toDos from "../data/toDos";
 
 interface ClassInput {
     name: string;
@@ -17,17 +17,20 @@ interface ClassInput {
 
 export const createClass = async (classInput: ClassInput) => {
     const classDoc = await addDoc(collection(db, 'classes'), classInput);
-    await createLessons(classDoc.id);
+    await Promise.all([
+        createLessons(classDoc.id),
+        createToDos(classDoc.id)
+    ])
 }
-
-// const createTasks = async (classId: string) => {
-//     await Promise.all(tasks.map((task, index) => {
-//         return setDoc(doc(db, "classes", classId, "tasks", `${index}`), { ...task, id: index });
-//     }))
-// }
 
 const createLessons = async (classId: string) => {
     await Promise.all(lessons.map(lesson => {
         return setDoc(doc(db, "classes", classId, "lessons", lesson.id), lesson);
+    }))
+}
+
+const createToDos = async (classId: string) => {
+    await Promise.all(toDos.map(toDo => {
+        return setDoc(doc(db, "classes", classId, "toDos", toDo.id), toDo);
     }))
 }

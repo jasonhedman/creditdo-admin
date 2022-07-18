@@ -2,33 +2,35 @@ import { useEffect } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Box, Drawer, useMediaQuery, Theme } from '@mui/material';
+import { Box, Drawer, useMediaQuery, Theme, Stack } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import SchoolIcon from '@mui/icons-material/School';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import Logo from './logo';
-import { NavItem } from './nav-item';
+import NavItem from './nav-item';
+
+export const sidebarWidth = 100;
 
 const items = [
   {
     href: '/',
-    icon: (<HomeIcon fontSize="small" />),
+    icon: (<HomeIcon fontSize="large" />),
     title: 'Dashboard'
   },
   {
     href: '/classes',
-    icon: (<GroupIcon fontSize="small" />),
+    icon: (<GroupIcon fontSize="large" />),
     title: 'Classes'
   },
   {
     href: '/learn',
-    icon: (<SchoolIcon fontSize="small" />),
+    icon: (<SchoolIcon fontSize="large" />),
     title: 'Learn'
   },
   {
     href: '/work',
-    icon: (<HandshakeIcon fontSize="small" />),
+    icon: (<HandshakeIcon fontSize="large" />),
     title: 'Work'
   }
 ];
@@ -61,7 +63,8 @@ export const DashboardSidebar = (props) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100%',
+          alignItems: 'center',
         }}
       >
         <div>
@@ -78,7 +81,10 @@ export const DashboardSidebar = (props) => {
             </NextLink>
           </Box>
         </div>
-        <Box sx={{ flexGrow: 1 }}>
+        <Stack
+          flexGrow={1}
+          alignItems="center"
+        >
           {items.map((item) => (
             <NavItem
               key={item.title}
@@ -87,7 +93,7 @@ export const DashboardSidebar = (props) => {
               title={item.title}
             />
           ))}
-        </Box>
+        </Stack>
       </Box>
     </>
   );
@@ -101,7 +107,7 @@ export const DashboardSidebar = (props) => {
           sx: {
             backgroundColor: 'primary.main',
             color: '#FFFFFF',
-            width: 280
+            width: sidebarWidth
           }
         }}
         variant="permanent"
@@ -120,7 +126,7 @@ export const DashboardSidebar = (props) => {
         sx: {
           backgroundColor: 'primary.main',
           color: '#FFFFFF',
-          width: 280
+          width: sidebarWidth
         }
       }}
       sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}

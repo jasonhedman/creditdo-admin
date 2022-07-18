@@ -4,50 +4,44 @@ import Stack from '@mui/material/Stack';
 
 import DonutChart from './DonutChart';
 
-const data = [
-  {
-    label: 'Not Started',
-    value: 60,
-  },
-  {
-    label: 'Past Due',
-    value: 4,
-  },
-  {
-    label: 'In Progress',
-    value: 16,
-  },
-  {
-    label: 'Completed',
-    value: 20,
-  },
-];
+import { statuses } from '../../../hooks/useToDos';
 
-const colors = [
-  '#dcdcdc',
-  '#de483a',
-  '#f3df67',
-  '#9fc440',
-];
+type StatusCount = {
+  [key in typeof statuses[number]]: number;
+}
+
+const colors = {
+  'Not Started': '#dcdcdc',
+  'Past Due': '#de483a',
+  'Completed': '#9fc440'
+}
 
 interface Props {
   compact?: boolean;
+  statusCount: StatusCount;
+  setActiveBucket: (status: typeof statuses[number]) => void;
 }
 
-const DonutView : React.FC<Props> = ({ compact }) => {
+const DonutView : React.FC<Props> = ({ setActiveBucket, compact, statusCount }) => {
+
+  const total = Object.values(statusCount).reduce((acc, curr) => acc + curr, 0);
+
   return (
     <Stack 
       direction="row"
       justifyContent="center"
     >
       <DonutChart
-        data={data}
-        colors={colors}
+        data={statuses.map((status) => ({ label: status, value: statusCount[status] / total * 100 }))}
+        colors={statuses.map((status) => colors[status])}
         strokeColor={null}
         formatValues={(value) => `${value}%`}
         height={compact ? 150 : 200}
         width={compact ? 150 : 200}
         legend={false}
+        onClick={(status) => {
+          setActiveBucket(status.label as typeof statuses[number]);
+        }}
       />
     </Stack>
   )

@@ -1,29 +1,60 @@
+import { FC, ReactNode } from 'react';
+
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
-import { Box, Button, ListItem } from '@mui/material';
 
-export const NavItem = (props) => {
-  const { href, icon, title, ...others } = props;
+import { Box, Typography, ListItem, Stack } from '@mui/material';
+
+interface Props {
+  href: string;
+  icon: ReactNode;
+  title: string;
+}
+
+const NavItem : FC<Props> = ({ href, icon, title }) => {
   const router = useRouter();
   const active = href ? (router.pathname === href) : false;
 
   return (
-    <ListItem
-      disableGutters
+    <Box
       sx={{
         display: 'flex',
         mb: 0.5,
         py: 0,
         px: 2
       }}
-      {...others}
     >
       <NextLink
         href={href}
         passHref
       >
-        <Button
+        <Stack
+          alignItems="center"
+          p={1}
+          sx={{
+            backgroundColor: active && '#FFF',
+            borderRadius: 1,
+            color: active ? 'primary.main' : '#FFF',
+            '&:hover': {
+              cursor: 'pointer',
+            }
+          }}
+        >
+          {icon}
+          {
+            active && (
+              <Typography
+                fontSize={'10px'}
+                fontWeight='bold'
+              >
+                {title}
+              </Typography>
+            )
+          }
+          
+
+        </Stack>
+        {/* <Button
           component="a"
           startIcon={icon}
           disableRipple
@@ -48,14 +79,10 @@ export const NavItem = (props) => {
           <Box sx={{ flexGrow: 1 }}>
             {title}
           </Box>
-        </Button>
+        </Button> */}
       </NextLink>
-    </ListItem>
+    </Box>
   );
 };
 
-NavItem.propTypes = {
-  href: PropTypes.string,
-  icon: PropTypes.node,
-  title: PropTypes.string
-};
+export default NavItem;

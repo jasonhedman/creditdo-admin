@@ -152,7 +152,7 @@ const DonutChart: React.FC<Props> = ({
                     if (selected?.label === label) {
                       const toggle = clickToggle ? !toggleSelect : false;
                       setSelected(item);
-                      setToggleSelect(toggle);
+                      // setToggleSelect(toggle);
                       onClick(item, toggle);
                     }
                   },

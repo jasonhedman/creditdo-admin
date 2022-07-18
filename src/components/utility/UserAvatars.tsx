@@ -20,7 +20,7 @@ const UserAvatars : React.FC<Props> = ({ numStudents, size }) => {
         >
             <Stack direction="row">
                 {
-                    [...Array(5)].map((_, i) => (
+                    [...Array(Math.min(numStudents, 5))].map((_, i) => (
                         <Box
                             key={i}
                             sx={{
@@ -34,23 +34,27 @@ const UserAvatars : React.FC<Props> = ({ numStudents, size }) => {
                         />
                     ))
                 }
-                <Box
-                    sx={{
-                        height: size,
-                        width: size,
-                        borderRadius: '50%',
-                        border: '1px solid #FFF',
-                        backgroundColor: theme.palette.secondary.main,
-                        marginLeft: `-${size / 3}px`,
-                        color: '#FFF',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        fontSize: size / 2
-                    }}
-                >
-                    +{numStudents - 5}
-                </Box>
+                {
+                    numStudents > 5 && (
+                        <Box
+                            sx={{
+                                height: size,
+                                width: size,
+                                borderRadius: '50%',
+                                border: '1px solid #FFF',
+                                backgroundColor: theme.palette.secondary.main,
+                                marginLeft: `-${size / 3}px`,
+                                color: '#FFF',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                fontSize: size / 2
+                            }}
+                        >
+                            +{numStudents - 5}
+                        </Box>
+                    )
+                }
             </Stack>
         </Stack>
     )

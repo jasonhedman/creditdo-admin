@@ -6,12 +6,16 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+import { Class } from '../../../hooks/useClasses';
+import moment from 'moment';
+
 interface Props {
+    classData: Class
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }
 
-const ClassHeader : React.FC<Props> = ({ isOpen, setIsOpen }) => {
+const ClassHeader : React.FC<Props> = ({ classData, isOpen, setIsOpen }) => {
   return (
     <Stack
         direction="row"
@@ -25,7 +29,7 @@ const ClassHeader : React.FC<Props> = ({ isOpen, setIsOpen }) => {
                 color: isOpen ? 'secondary.main' : '#9CA3AF',
             }}
         >
-            Class 1 (8:30)
+            {classData.name} ({moment(classData.time.seconds * 1000).format('H:mm')})
         </Typography>
         <IconButton 
             color="secondary"

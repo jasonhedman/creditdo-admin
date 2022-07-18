@@ -4,22 +4,19 @@ import Stack from '@mui/material/Stack'
 
 import ClassView from './ClassView'
 
-const classes = [
-    {
-        id: 1,
-        name: 'Class 1',
-        startTime: '8:30',
-        endTime: '9:30',
-    }
-]
+import useClasses from '../../../hooks/useClasses'
 
 const MetricsView = () => {
+
+    const { classes, loading } = useClasses();
+
   return (
     <Stack>
         {
-            classes.map(classItem => (
+            classes.map(classData => (
                 <ClassView
-                    key={classItem.id} 
+                    key={classData.id}
+                    classData={classData}
                 />
             ))
         }

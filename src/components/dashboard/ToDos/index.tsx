@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -6,22 +6,16 @@ import Divider from '@mui/material/Divider'
 
 import ToDo from './ToDo'
 
-const toDos = [
-    {
-        title: 'Implement the new features',
-        description: 'Implement the new features',
-    },
-    {
-        title: 'Implement the new features',
-        description: 'Implement the new features',
-    },
-    {
-        title: 'Implement the new features',
-        description: 'Implement the new features',
-    }
-]
+import { ToDo as ToDoType } from '../../../hooks/useToDos'
 
-const ToDos = () => {
+interface Props {
+    activeBucket: string;
+    toDos: ToDoType[];
+    check: (id: string) => void;
+    uncheck: (id: string) => void;
+}
+
+const ToDos : FC<Props> = ({ activeBucket, toDos, check, uncheck }) => {
   return (
     <Stack 
         flex={1}
@@ -30,16 +24,28 @@ const ToDos = () => {
         <Typography
             variant="h6"
         >
-            {toDos.length} To-Dos
+            {activeBucket}
         </Typography>
         <Divider />
-        {toDos.map((toDo, index) => (
-            <ToDo
-                key={index}
-                title={toDo.title}
-                description={toDo.description}
-            />
-        ))}
+        {
+            toDos.length > 0 ? (
+                toDos.map((toDo, index) => (
+                    <ToDo
+                        key={index}
+                        toDo={toDo}
+                        check={() => check(toDo.id)}
+                        uncheck={() => uncheck(toDo.id)}
+                    />
+                ))
+            ) : (
+                <Typography
+                    variant="body1"
+                    color="textSecondary"
+                >
+                    No todos
+                </Typography>
+            )
+        }
     </Stack>
   )
 }
