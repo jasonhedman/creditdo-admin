@@ -4,14 +4,18 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import { Event } from './types';
+import { Event } from '../../../hooks/useEvents';
 import UserAvatars from '../../utility/UserAvatars';
+import moment from 'moment';
 
 interface Props {
     event: Event
 }
 
 const EventDisplay : React.FC<Props> = ({ event }) => {
+
+    const date = moment(event.date.seconds * 1000);
+
   return (
     <Stack
         direction="row"
@@ -43,14 +47,14 @@ const EventDisplay : React.FC<Props> = ({ event }) => {
                     variant='body2'
                     color='white'
                 >
-                    {event.date.format('MMM')}
+                    {date.format('MMM')}
                 </Typography>
                 <Typography
                     variant='body1'
                     color='white'
                     fontWeight='bold'
                 >
-                    {event.date.format('DD')}
+                    {date.format('DD')}
                 </Typography>
             </Stack>
         </Box>
@@ -64,7 +68,7 @@ const EventDisplay : React.FC<Props> = ({ event }) => {
             <Typography
                 variant='body2'
             >
-                {event.date.format('ddd, h:mma')}
+                {date.format('ddd, h:mma')}
             </Typography>
             <Typography
                 variant='body2'
@@ -74,7 +78,7 @@ const EventDisplay : React.FC<Props> = ({ event }) => {
             </Typography>
             <UserAvatars 
                 size={25}
-                numStudents={10}
+                numStudents={event.participants.length}
             />
         </Stack>
     </Stack>

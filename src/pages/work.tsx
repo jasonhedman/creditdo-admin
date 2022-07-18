@@ -2,10 +2,12 @@ import React from 'react'
 
 import Head from 'next/head';
 import { NextPage } from 'next';
+import Link from 'next/link';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 import DashboardLayout from '../components/dashboard-layout';
 import UpcomingEvents from '../components/work/UpcomingEvents';
@@ -35,6 +37,18 @@ const Work : NextPage = () => {
                 >
                     <PageHeader 
                         title='Work'
+                        actionButton={
+                            <Link
+                              href='/create/event'
+                              passHref
+                            >
+                                <Button
+                                    variant='contained'
+                                >
+                                    Create Event
+                                </Button>
+                            </Link>
+                        }
                     />
                     <Stack
                         direction='row'

@@ -1,13 +1,16 @@
+
+import { NextPage } from 'next'
 import Head from 'next/head';
 import NextLink from 'next/link';
+
 import { Box, Button, Container, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const NotFound = () => (
+const NotFound : NextPage = () => (
   <>
     <Head>
       <title>
-        404 | Material Kit
+        Nout Found | Credit Do
       </title>
     </Head>
     <Box

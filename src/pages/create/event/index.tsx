@@ -1,19 +1,15 @@
 import React from 'react'
 
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-
-import DashboardLayout from '../../../components/dashboard-layout'
+import { NextPage } from 'next'
 
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 
-import CreateEventClass from '../../../components/create/event/CreateEventClass'
+import DashboardLayout from '../../../components/dashboard-layout'
+import CreateEventComponent from '../../../components/create/event'
 
-const CreateEvent = () => {
-
-    const { query } = useRouter();
-    const classId = query.classId as string;
+const CreateEvent : NextPage = () => {
 
     return (
         <DashboardLayout>
@@ -32,9 +28,7 @@ const CreateEvent = () => {
                 <Container 
                     maxWidth={false}
                 >
-                    <CreateEventClass 
-                        classId={classId}
-                    />
+                    <CreateEventComponent />
                 </Container>
             </Box>
         </DashboardLayout>

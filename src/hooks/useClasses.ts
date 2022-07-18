@@ -10,6 +10,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 
 interface ReturnType {
     classes: Class[];
+    allClasses: Class[];
     loading: boolean;
     classView: string;
     setClassView: (classViewValue: string) => void;
@@ -19,6 +20,7 @@ interface ReturnType {
 const init : ReturnType = {
     loading: true,
     classes: [],
+    allClasses: [],
     classView: "All Classes",
     setClassView: (classViewValue: string) => {},
     classOptions: [{ label: "All Classes", value: "All Classes" }]
@@ -55,11 +57,14 @@ const useClasses = () => {
 
     const [classes, loading, error] = useCollection<Class>(auth && query(collection(db, 'classes') as CollectionReference<Class>, where('teacherId', '==', auth.uid)));
 
+    const allClasses = classes ? classes.docs.map(doc => ({ ...doc.data(), id: doc.id })) : [];
+
     return {
         classView: classViewVal,
         setClassView,
         loading,
-        classes: classes ? classes.docs.map(doc => ({...doc.data(), id: doc.id})).filter(classData => classViewVal === "All Classes" || classData.id === classViewVal ) : [],
+        allClasses,
+        classes: allClasses.filter(classData => classViewVal === "All Classes" || classData.id === classViewVal ),
         classOptions: classOptions.concat(classes ? classes.docs.map(doc => ({label: doc.data().name, value: doc.id})) : []),
     }
 

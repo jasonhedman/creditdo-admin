@@ -18,12 +18,14 @@ export interface Event {
 	poundsCollected: number;
 }
 
+const now = new Date();
+
 const useEvents = (classId : string) => {
     
     const [events, loading, error] = useCollection<Event>(query(
         collection(db, "classes", classId, "events") as CollectionReference<Event>, 
-        // where('date', '>', new Date()), 
-        // orderBy('date', 'asc'), 
+        where('date', '>', now),
+        orderBy('date', 'asc'), 
     ));
 
     return {
