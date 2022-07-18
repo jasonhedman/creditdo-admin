@@ -39,7 +39,7 @@ const Learn : NextPage = () => {
                             title='Learn'
                         />
                         <Stack
-                            spacing={8}
+                            spacing={4}
                         >
                             {
                                 classes.map(classData => (

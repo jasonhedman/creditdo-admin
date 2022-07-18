@@ -72,18 +72,14 @@ const Dashboard : NextPage = () => {
                 </Link>
               }
             />
-            <Stack
-              spacing={8}
-            >
-              {
-                classes.map(classData => (
-                  <ClassView
-                    key={classData.id}
-                    classData={classData}
-                  />
-                ))
-              }
-            </Stack>
+            {
+              classes.map(classData => (
+                <ClassView
+                  key={classData.id}
+                  classData={classData}
+                />
+              ))
+            }
           </Stack>
         </Container>
       </Box>
