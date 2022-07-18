@@ -4,12 +4,12 @@ import Head from 'next/head';
 
 import { Box, Container, Stack } from '@mui/material';
 
-import DashboardLayout from '../components/dashboard-layout';
+import DashboardLayout from '../components/layout/DashboardLayout';
 
 import { NextPage } from 'next';
 import useClasses from '../hooks/useClasses';
 import ClassView from '../components/learn/ClassView';
-import PageHeader from '../components/PageHeader';
+import PageHeader from '../components/utility/PageHeader';
 
 const Learn : NextPage = () => {
 

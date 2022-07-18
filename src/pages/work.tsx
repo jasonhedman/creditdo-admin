@@ -9,10 +9,10 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-import DashboardLayout from '../components/dashboard-layout';
+import DashboardLayout from '../components/layout/DashboardLayout';
 import UpcomingEvents from '../components/work/UpcomingEvents';
 import Calendar from '../components/work/Calendar';
-import PageHeader from '../components/PageHeader';
+import PageHeader from '../components/utility/PageHeader';
 
 const Work : NextPage = () => {
   return (

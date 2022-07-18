@@ -6,7 +6,7 @@ import { Box, Container, Grid, Typography, Stack, CircularProgress } from '@mui/
 
 import { AccountProfile } from '../components/account/AccountProfile';
 import { AccountProfileDetails } from '../components/account/AccountProfileDetails';
-import DashboardLayout from '../components/dashboard-layout';
+import DashboardLayout from '../components/layout/DashboardLayout';
 
 
 import useAuth from '../hooks/useAuth';

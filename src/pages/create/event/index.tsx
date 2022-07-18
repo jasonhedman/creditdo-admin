@@ -6,7 +6,7 @@ import { NextPage } from 'next'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 
-import DashboardLayout from '../../../components/dashboard-layout'
+import DashboardLayout from '../../../components/layout/DashboardLayout'
 import CreateEventComponent from '../../../components/create/event'
 
 const CreateEvent : NextPage = () => {

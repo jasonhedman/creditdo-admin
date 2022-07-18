@@ -9,8 +9,8 @@ import GroupIcon from '@mui/icons-material/Group';
 import SchoolIcon from '@mui/icons-material/School';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
-import Logo from './logo';
-import NavItem from './nav-item';
+import Logo from './Logo';
+import NavItem from './NavItem';
 
 export const sidebarWidth = 100;
 

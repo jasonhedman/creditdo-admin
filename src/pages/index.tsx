@@ -5,12 +5,12 @@ import Link from 'next/link';
 
 import { Box, Container, CircularProgress, Stack, Button } from '@mui/material';
 
-import DashboardLayout from '../components/dashboard-layout';
+import DashboardLayout from '../components/layout/DashboardLayout';
 import ClassView from '../components/dashboard/ClassView';
 
 import useClasses from '../hooks/useClasses';
 import useAuth from '../hooks/useAuth';
-import PageHeader from '../components/PageHeader';
+import PageHeader from '../components/utility/PageHeader';
 
 const Dashboard : NextPage = () => {
 

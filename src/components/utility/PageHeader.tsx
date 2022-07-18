@@ -11,7 +11,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-import useClasses from '../hooks/useClasses';
+import useClasses from '../../hooks/useClasses';
 
 interface Props {
     title: string;

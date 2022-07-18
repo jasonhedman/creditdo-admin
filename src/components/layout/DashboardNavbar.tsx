@@ -17,11 +17,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import EmailIcon from '@mui/icons-material/Email';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-import { UserCircle as UserCircleIcon } from '../icons/user-circle';
+import { UserCircle as UserCircleIcon } from '../../icons/user-circle';
 
-import { sidebarWidth } from './dashboard-sidebar';
+import { sidebarWidth } from './DashboardSidebar';
 
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme } : {theme: Theme}) => ({
   backgroundColor: theme.palette.background.paper,

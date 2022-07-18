@@ -15,7 +15,7 @@ const viewOptions = [
 type ViewOptionTypes = typeof viewOptions[number];
 
 import { DisplayOptionTypes, displayOptions } from '../../pages/classes';
-import PageHeader from '../PageHeader';
+import PageHeader from '../utility/PageHeader';
 
 interface Props {
   display: DisplayOptionTypes,

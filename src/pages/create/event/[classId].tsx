@@ -3,7 +3,7 @@ import React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import DashboardLayout from '../../../components/dashboard-layout'
+import DashboardLayout from '../../../components/layout/DashboardLayout'
 
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
