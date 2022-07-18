@@ -1,5 +1,6 @@
+import { FC, ComponentType } from 'react';
 import Head from 'next/head';
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider, EmotionCache } from '@emotion/react';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { CssBaseline } from '@mui/material';
@@ -9,10 +10,13 @@ import { theme } from '../theme';
 
 const clientSideEmotionCache = createEmotionCache();
 
-const App = (props) => {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+interface Props {
+  Component: ComponentType<any>;
+  pageProps?: object;
+  emotionCache?: EmotionCache;
+}
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+const App : FC<Props> = ({ Component, emotionCache = clientSideEmotionCache, pageProps}) => {
 
   return (
     <CacheProvider value={emotionCache}>
@@ -28,7 +32,7 @@ const App = (props) => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {getLayout(<Component {...pageProps} />)}
+            <Component {...pageProps} />
         </ThemeProvider>
       </LocalizationProvider>
     </CacheProvider>

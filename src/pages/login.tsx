@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import Head from 'next/head';
 import NextLink from 'next/link';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
 import { Box, Button, Container, Link, TextField, Typography, Stack } from '@mui/material';
 
 import useAuth from '../hooks/useAuth';
 
-const Login = () => {
+const Login : NextPage = () => {
 
   const router = useRouter();
 

@@ -1,19 +1,20 @@
 import React from 'react'
 
 import Head from 'next/head';
+import { NextPage } from 'next';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
-import { DashboardLayout } from '../components/dashboard-layout';
+import DashboardLayout from '../components/dashboard-layout';
 import Header from '../components/work/Header';
 import UpcomingEvents from '../components/work/UpcomingEvents';
 import Calendar from '../components/work/Calendar';
 
-const Work = () => {
+const Work : NextPage = () => {
   return (
-    <>
+    <DashboardLayout>
         <Head>
             <title>
                 Work | Credit Do
@@ -47,14 +48,8 @@ const Work = () => {
                 </Stack>
             </Container>
         </Box>
-    </>
+    </DashboardLayout>
   )
 }
-
-Work.getLayout = (page) => (
-    <DashboardLayout>
-        {page}
-    </DashboardLayout>
-);
 
 export default Work

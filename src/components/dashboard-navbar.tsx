@@ -16,7 +16,10 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import EmailIcon from '@mui/icons-material/Email';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+
 import { UserCircle as UserCircleIcon } from '../icons/user-circle';
+
+import { sidebarWidth } from './dashboard-sidebar';
 
 import useAuth from '../hooks/useAuth';
 
@@ -29,90 +32,90 @@ interface Props {
   onSidebarOpen: () => void;
 }
 
-export const DashboardNavbar : React.FC<Props> = ({ onSidebarOpen, ...other}) => {
+const DashboardNavbar : React.FC<Props> = ({ onSidebarOpen, ...other}) => {
 
   const { user } = useAuth();
 
   return (
-    <>
-      <DashboardNavbarRoot
+    <DashboardNavbarRoot
+      sx={{
+        left: {
+          lg: sidebarWidth
+        },
+        width: {
+          lg: `calc(100% - ${sidebarWidth}px)`
+        }
+      }}
+      {...other}
+    >
+      <Toolbar
+        disableGutters
         sx={{
-          left: {
-            lg: 280
-          },
-          width: {
-            lg: 'calc(100% - 280px)'
-          }
+          minHeight: 64,
+          left: 0,
+          px: 2,
         }}
-        {...other}
       >
-        <Toolbar
-          disableGutters
+        <IconButton
+          onClick={onSidebarOpen}
           sx={{
-            minHeight: 64,
-            left: 0,
-            px: 2,
+            display: {
+              xs: 'inline-flex',
+              lg: 'none'
+            }
           }}
         >
-          <IconButton
-            onClick={onSidebarOpen}
-            sx={{
-              display: {
-                xs: 'inline-flex',
-                lg: 'none'
-              }
-            }}
-          >
-            <MenuIcon fontSize="small" />
+          <MenuIcon fontSize="small" />
+        </IconButton>
+        <Box sx={{ flexGrow: 1 }} />
+        <Tooltip title="Notifications">
+          <IconButton sx={{ ml: 1 }}>
+            <NotificationsIcon 
+              fontSize="small"
+              color='primary'
+            />
           </IconButton>
-          <Box sx={{ flexGrow: 1 }} />
-          <Tooltip title="Notifications">
-            <IconButton sx={{ ml: 1 }}>
-              <NotificationsIcon 
-                fontSize="small"
-                color='primary'
-              />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Mail">
-            <IconButton>
-              <EmailIcon 
-                fontSize="small"
-                color='primary'
-              />
-            </IconButton>
-          </Tooltip>
-          {user && (
-            <>
-              <Typography 
+        </Tooltip>
+        <Tooltip title="Mail">
+          <IconButton>
+            <EmailIcon 
+              fontSize="small"
+              color='primary'
+            />
+          </IconButton>
+        </Tooltip>
+        {user && (
+          <>
+            <Typography 
 
-                variant='body2' 
-                color='text.primary'
+              variant='body2' 
+              color='text.primary'
+              sx={{
+                ml: 1,
+              }}
+            >
+              Welcome, {user.firstName} {user.lastName}!
+            </Typography>
+            <Link
+              href='/account'
+              passHref
+            >
+              <Avatar
                 sx={{
-                  ml: 1,
+                  height: 40,
+                  width: 40,
+                  ml: 1
                 }}
+                src="/static/images/avatars/avatar_1.png"
               >
-                Welcome, {user.firstName} {user.lastName}!
-              </Typography>
-              <Link
-                href='/account'
-                passHref
-              >
-                <Avatar
-                  sx={{
-                    height: 40,
-                    width: 40,
-                    ml: 1
-                  }}
-                  src="/static/images/avatars/avatar_1.png"
-                >
-                  <UserCircleIcon fontSize="small" />
-                </Avatar>
-              </Link>
-            </>
-          )}
-        </Toolbar>
-      </DashboardNavbarRoot>
-    </>
+                <UserCircleIcon fontSize="small" />
+              </Avatar>
+            </Link>
+          </>
+        )}
+      </Toolbar>
+    </DashboardNavbarRoot>
   );
 };
+
+export default DashboardNavbar;

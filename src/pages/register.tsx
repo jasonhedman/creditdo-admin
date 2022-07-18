@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
 import {
   Box,
   Button,
@@ -21,7 +25,7 @@ import { userDataKeys } from '../hooks/types';
 
 var pick = require('lodash.pick');
 
-const Register = () => {
+const Register  : NextPage = () => {
   const router = useRouter();
 
   const { user, signUp } = useAuth();

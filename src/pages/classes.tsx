@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
-import { DashboardLayout } from '../components/dashboard-layout';
+import DashboardLayout from '../components/dashboard-layout';
 import Header from '../components/classes/Header';
 import MetricsView from '../components/classes/MetricsView';
 import RosterView from '../components/classes/RosterView';

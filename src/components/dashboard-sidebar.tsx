@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
+
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
+
 import { Box, Drawer, useMediaQuery, Theme, Stack } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import SchoolIcon from '@mui/icons-material/School';
 import HandshakeIcon from '@mui/icons-material/Handshake';
+
 import Logo from './logo';
 import NavItem from './nav-item';
 
@@ -35,8 +37,13 @@ const items = [
   }
 ];
 
-export const DashboardSidebar = (props) => {
-  const { open, onClose } = props;
+interface Props {
+  onClose: () => void;
+  open: boolean;
+}
+
+const DashboardSidebar : FC<Props> = ({ onClose, open }) => {
+
   const router = useRouter();
   const lgUp = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
@@ -137,7 +144,4 @@ export const DashboardSidebar = (props) => {
   );
 };
 
-DashboardSidebar.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool
-};
+export default DashboardSidebar;

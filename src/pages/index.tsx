@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { Box, Container, CircularProgress, Stack } from '@mui/material';
 
-import { DashboardLayout } from '../components/dashboard-layout';
+import DashboardLayout from '../components/dashboard-layout';
 import Header from '../components/dashboard/Header';
 import ClassView from '../components/dashboard/ClassView';
 

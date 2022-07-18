@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { Box, Container, Stack } from '@mui/material';
 
-import { DashboardLayout } from '../components/dashboard-layout';
+import DashboardLayout from '../components/dashboard-layout';
 import Header from '../components/learn/Header';
 
 import { NextPage } from 'next';
