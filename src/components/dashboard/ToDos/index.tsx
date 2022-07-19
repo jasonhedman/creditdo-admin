@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 
-import ToDo from './ToDo'
+import ToDo from '../../utility/ToDo'
 
 import { ToDo as ToDoType } from '../../../hooks/types'
 

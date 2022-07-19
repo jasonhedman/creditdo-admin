@@ -79,7 +79,6 @@ const CalendarContainer = styled.div`
         background: ${theme.palette.secondary.main};
         opacity: 0.8; 
     }
-
 `;
 
 interface Props {

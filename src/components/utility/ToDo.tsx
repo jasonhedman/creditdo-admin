@@ -9,7 +9,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 import moment from 'moment'
 
-import { ToDo as ToDoType } from '../../../hooks/types'
+import { ToDo as ToDoType } from '../../hooks/types'
 
 interface Props {
     toDo: ToDoType;
@@ -45,6 +45,7 @@ const ToDo : React.FC<Props> = ({ toDo, check, uncheck }) => {
             </Stack>
             <Box 
                 flex={1}
+                minWidth='2rem'
             />
             <Stack
                 direction="row"

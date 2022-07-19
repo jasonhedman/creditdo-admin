@@ -48,7 +48,7 @@ const EventComponent : FC<Props> = ({ classId, eventId }) => {
             >
                 {event.title}
             </Typography>
-            <EventDetails 
+            <EventDetails
                 event={event}
             />
             <ImpactDetails
