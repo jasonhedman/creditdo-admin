@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'
 import ClassHeader from './ClassHeader'
 import EventDisplay from '../EventDisplay';
 
-import { Class } from '../../../../hooks/useClasses'
+import { Class } from '../../../../hooks/types'
 import useEvents from '../../../../hooks/useEvents';
 
 interface Props {

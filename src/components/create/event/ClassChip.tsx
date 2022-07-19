@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 
 import moment from 'moment'
 
-import { Class } from '../../../hooks/useClasses'
+import { Class } from '../../../hooks/types'
 import Link from 'next/link'
 
 interface Props {

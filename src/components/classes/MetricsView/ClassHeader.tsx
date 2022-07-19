@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-import { Class } from '../../../hooks/useClasses';
+import { Class } from '../../../hooks/types';
 import moment from 'moment';
 
 interface Props {

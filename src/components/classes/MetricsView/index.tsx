@@ -10,18 +10,18 @@ const MetricsView = () => {
 
     const { classes, loading } = useClasses();
 
-  return (
-    <Stack>
-        {
-            classes.map(classData => (
-                <ClassView
-                    key={classData.id}
-                    classData={classData}
-                />
-            ))
-        }
-    </Stack>
-  )
+    return (
+        <Stack>
+            {
+                classes.map(classData => (
+                    <ClassView
+                        key={classData.id}
+                        classData={classData}
+                    />
+                ))
+            }
+        </Stack>
+    )
 }
 
 export default MetricsView

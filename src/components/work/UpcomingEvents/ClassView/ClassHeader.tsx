@@ -8,7 +8,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import moment from 'moment';
 
-import { Class } from '../../../../hooks/useClasses';
+import { Class } from '../../../../hooks/types';
 
 interface Props {
     classData: Class;

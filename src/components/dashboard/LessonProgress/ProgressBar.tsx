@@ -7,7 +7,7 @@ import StatusBadge from './StatusBadge'
 import ProgressStep from './ProgressStep'
 
 import type { Status } from './types'
-import { Lesson } from '../../../hooks/useLessons'
+import { Lesson } from '../../../hooks/types'
 import { getLessonStatus } from '../../../services/utils'
 
 interface Step {

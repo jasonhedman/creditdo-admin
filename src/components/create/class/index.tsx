@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 
-import Head from 'next/head';
-
 import useAuth from '../../../hooks/useAuth';
 
 import { useFormik } from 'formik';
@@ -9,8 +7,6 @@ import * as Yup from 'yup';
 
 import { createClass } from '../../../services/classes';
 
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

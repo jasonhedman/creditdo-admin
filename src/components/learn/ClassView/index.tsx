@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack'
 
 import ClassHeader from './ClassHeader'
 
-import { Class } from '../../../hooks/useClasses'
+import { Class } from '../../../hooks/types'
 import useLessons from '../../../hooks/useLessons';
 import WeekView from '../WeekView';
 

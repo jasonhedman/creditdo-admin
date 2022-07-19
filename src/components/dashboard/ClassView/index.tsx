@@ -7,7 +7,7 @@ import UpcomingEvent from '../UpcomingEvent';
 import LessonProgress from '../LessonProgress';
 import ImplementationProgress from '../ImplementationProgress';
 
-import { Class } from '../../../hooks/useClasses';
+import { Class } from '../../../hooks/types';
 
 interface Props {
     classData: Class;

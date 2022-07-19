@@ -3,13 +3,7 @@ import { db } from "../firebase/clientApp";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { collection, CollectionReference, query } from "firebase/firestore";
 
-
-export interface Student {
-    id: string;
-	firstName: string;
-    lastName: string;
-}
-
+import { Student } from "./types";
 
 const useStudents = (classId : string) => {
     

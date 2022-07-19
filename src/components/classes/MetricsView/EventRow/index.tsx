@@ -10,7 +10,7 @@ import ImpactView from './ImpactView'
 import ValueView from './ValueView'
 
 import { colWidths } from '../types'
-import { Event } from '../../../../hooks/useEvents'
+import { Event } from '../../../../hooks/types'
 
 const poundsPerMeal = 1.2;
 const dollarsPerMeal = 4;

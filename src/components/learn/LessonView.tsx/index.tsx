@@ -9,7 +9,7 @@ import StatusBadge from './StatusBadge';
 
 import moment from 'moment';
 
-import { Lesson } from '../../../hooks/useLessons';
+import { Lesson } from '../../../hooks/types';
 import { Status } from '../types';
 
 interface Props {

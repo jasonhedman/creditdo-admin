@@ -9,7 +9,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 import moment from 'moment'
 
-import { ToDo as ToDoType } from '../../../hooks/useToDos'
+import { ToDo as ToDoType } from '../../../hooks/types'
 
 interface Props {
     toDo: ToDoType;

@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider'
 
 import ToDo from './ToDo'
 
-import { ToDo as ToDoType } from '../../../hooks/useToDos'
+import { ToDo as ToDoType } from '../../../hooks/types'
 
 interface Props {
     activeBucket: string;

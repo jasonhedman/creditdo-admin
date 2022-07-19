@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import WeekHeader from './WeekHeader';
 import LessonView from '../LessonView.tsx';
 
-import { Lesson } from '../../../hooks/useLessons';
+import { Lesson } from '../../../hooks/types';
 
 interface Props {
     weekNumber : number;

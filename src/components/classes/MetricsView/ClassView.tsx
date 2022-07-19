@@ -7,7 +7,7 @@ import ClassHeader from './ClassHeader'
 import HeaderRow from './HeaderRow'
 import EventRow from './EventRow';
 
-import { Class } from '../../../hooks/useClasses';
+import { Class } from '../../../hooks/types';
 import useEvents from '../../../hooks/useEvents';
 
 interface Props {

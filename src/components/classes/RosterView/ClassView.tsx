@@ -8,9 +8,8 @@ import HeaderRow from './HeaderRow'
 import StudentRow from './StudentRow';
 import AddStudent from './AddStudent';
 
-import { Class } from '../../../hooks/useClasses';
+import { Class } from '../../../hooks/types';
 import useStudents from '../../../hooks/useStudents';
-import useLessons from '../../../hooks/useLessons';
 
 interface Props {
     classData: Class

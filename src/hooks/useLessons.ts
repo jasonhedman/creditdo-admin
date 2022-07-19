@@ -2,19 +2,7 @@ import { db } from "../firebase/clientApp";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { collection, CollectionReference, doc, updateDoc } from "firebase/firestore";
 
-interface Time {
-    seconds: number;
-    nanoseconds: number;
-}
-
-export interface Lesson {
-    id: string;
-	title: string;
-	createdAt: Time;
-	lengthHours: number;
-	dueDate: Time;
-	completed: boolean;
-}
+import { Lesson } from "./types";
 
 const useLessons = (classId : string) => {
 

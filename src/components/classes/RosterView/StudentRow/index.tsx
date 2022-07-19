@@ -10,7 +10,7 @@ import LessonProgress from './LessonProgress'
 import HoursDisplay from './LessonProgress/HoursDisplay'
 import EventsDisplay from './LessonProgress/EventsDisplay'
 
-import { Student } from '../../../../hooks/useStudents'
+import { Student } from '../../../../hooks/types'
 import ScoreCircle from './LessonProgress/ScoreCircle'
 
 interface Props {

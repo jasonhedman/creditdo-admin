@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 
 import DonutChart from './DonutChart';
 
-import { statuses } from '../../../hooks/useToDos';
+import { statuses } from '../../../hooks/types';
 
 type StatusCount = {
   [key in typeof statuses[number]]: number;

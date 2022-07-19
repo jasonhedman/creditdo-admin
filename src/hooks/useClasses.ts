@@ -8,6 +8,8 @@ import { db } from "../firebase/clientApp";
 import { collection, where, query, CollectionReference } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
+import { Class } from "./types";
+
 interface ReturnType {
     classes: Class[];
     allClasses: Class[];
@@ -24,18 +26,6 @@ const init : ReturnType = {
     classView: "All Classes",
     setClassView: (classViewValue: string) => {},
     classOptions: [{ label: "All Classes", value: "All Classes" }]
-}
-
-interface Time {
-    seconds: number;
-    nanoseconds: number;
-}
-
-export interface Class {
-    name: string;
-    teacherId: string;
-    time: Time;
-    id: string;
 }
 
 interface ClassOption {

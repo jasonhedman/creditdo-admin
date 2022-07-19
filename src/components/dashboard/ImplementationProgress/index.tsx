@@ -6,7 +6,8 @@ import SectionContainer from '../utility/SectionContainer';
 import DonutView from './DonutView';
 import ToDos from '../ToDos';
 
-import useToDos, { statuses } from '../../../hooks/useToDos';
+import { statuses } from '../../../hooks/types';
+import useToDos from '../../../hooks/useToDos';
 
 interface Props {
   compact?: boolean;

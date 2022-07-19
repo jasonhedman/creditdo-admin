@@ -4,20 +4,7 @@ import { collection, CollectionReference, doc, updateDoc } from "firebase/firest
 
 import moment from "moment";
 
-interface Time {
-    seconds: number;
-    nanoseconds: number;
-}
-
-export interface ToDo {
-	id: string;
-	title: string;
-	description: string;
-	dueDate: Time;
-	completed: boolean;
-}
-
-export const statuses = ['Not Started', 'Past Due', 'Completed'] as const;
+import { ToDo, statuses } from "./types";
 
 type ToDoBuckets = {
   [key in typeof statuses[number]]: ToDo[];

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 
 import moment from 'moment'
 
-import { Event } from '../../../../hooks/useEvents'
+import { Event } from '../../../../hooks/types'
 
 interface Props {
     event: Event
