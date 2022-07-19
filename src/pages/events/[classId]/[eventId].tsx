@@ -17,9 +17,9 @@ const Work : NextPage = () => {
 
     const { query } = useRouter();
 
-    const { classId, eventId } = query;
+    // const { classId, eventId } = query;
 
-    const { event } = useEvent(classId as string, eventId as string);
+    // const { event } = useEvent(classId as string, eventId as string);
 
     return (
         <DashboardLayout>
