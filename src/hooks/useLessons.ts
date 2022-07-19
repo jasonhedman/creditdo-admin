@@ -29,7 +29,7 @@ const useLessons = (classId : string) => {
     }
 
     return {
-        lessons: lessons,
+        lessons: lessons || [],
         loading,
         complete,
         revert

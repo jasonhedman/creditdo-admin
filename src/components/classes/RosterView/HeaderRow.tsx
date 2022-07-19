@@ -1,44 +1,50 @@
 import React from 'react'
 
-import Stack from '@mui/material/Stack'
-import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
-interface ItemProps {
-    text: string
-}
+import { colWidths } from './types'
 
-const Item : React.FC<ItemProps> = ({ text }) => (
-    <Box
-        px={1}
-        py={0.25}
-        borderRadius={1}
-        sx={{
-            backgroundColor: '#f6f6f6'
-        }}
-    >
-        <Typography
-            variant="caption"
-            fontWeight='bold'
-        >
-            {text}
-        </Typography>
-    </Box>
-)
+const rows = [
+    'Student',
+    'Lesson Progress',
+    'Hours',
+    'Events',
+    'Pre-Test',
+    'Post-Test',
+]
 
 const HeaderRow = () => {
   return (
-    <Stack
-        direction="row"
-        spacing={2}
+    <Grid
+        container
+        spacing={1}
     >
-        <Item text="Student" />
-        <Item text="Lesson Progress" />
-        <Item text="Hours" />
-        <Item text="Events" />
-        <Item text="Pre-Test" />
-        <Item text="Post-Test" />
-    </Stack>
+        {rows.map((row, index) => (
+            <Grid
+                key={row}
+                item
+                xs={colWidths[index]}
+            >
+                <Box
+                    alignItems="center"
+                    borderRadius={1}
+                    px={1.5}
+                    py={0.5}
+                    sx={{
+                        backgroundColor: '#f6f6f6'
+                    }}
+                >
+                    <Typography
+                        fontWeight='bold'
+                    >
+                        {row}
+                    </Typography>
+                </Box>
+            </Grid>
+        ))}
+    </Grid>
   )
 }
 

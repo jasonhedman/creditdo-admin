@@ -15,7 +15,6 @@ import { Event } from '../../../../hooks/useEvents'
 const poundsPerMeal = 1.2;
 const dollarsPerMeal = 4;
 
-
 interface Props {
     event: Event
 }

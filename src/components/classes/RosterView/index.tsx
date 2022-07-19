@@ -1,12 +1,24 @@
 import React from 'react'
 
 import Stack from '@mui/material/Stack'
-import HeaderRow from './HeaderRow'
+
+import useClasses from '../../../hooks/useClasses';
+import ClassView from './ClassView';
 
 const RosterView = () => {
+
+  const { classes } = useClasses();
+
   return (
     <Stack>
-        <HeaderRow />
+      {
+        classes.map(classData => (
+          <ClassView 
+            key={classData.id}
+            classData={classData}
+          />
+        ))
+      }
     </Stack>
   )
 }

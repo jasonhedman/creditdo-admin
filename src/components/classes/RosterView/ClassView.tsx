@@ -5,10 +5,12 @@ import Stack from '@mui/material/Stack';
 
 import ClassHeader from './ClassHeader'
 import HeaderRow from './HeaderRow'
-import EventRow from './EventRow';
+import StudentRow from './StudentRow';
+import AddStudent from './AddStudent';
 
 import { Class } from '../../../hooks/useClasses';
-import useEvents from '../../../hooks/useEvents';
+import useStudents from '../../../hooks/useStudents';
+import useLessons from '../../../hooks/useLessons';
 
 interface Props {
     classData: Class
@@ -18,11 +20,11 @@ const ClassView : FC<Props> = ({ classData }) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const { events, loading } = useEvents(classData.id); 
+    const { students } = useStudents(classData.id);
 
     return (
         <Stack
-            spacing={1}
+            spacing={2}
         >
             <ClassHeader
                 classData={classData}
@@ -35,14 +37,18 @@ const ClassView : FC<Props> = ({ classData }) => {
             >
                 <HeaderRow />
                 {
-                    events.map(event => (
-                        <EventRow
-                            key={event.id}
-                            event={event}
+                    students.map(student => (
+                        <StudentRow 
+                            key={student.id}
+                            student={student}
+                            classId={classData.id}
                         />
                     ))
                 }
             </Grid>
+            <AddStudent
+                classId={classData.id}
+            />
         </Stack>
     )
 }
