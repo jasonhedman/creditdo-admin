@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -7,7 +7,11 @@ import useClasses from '../../../hooks/useClasses';
 
 import ClassView from './ClassView';
 
-const UpcomingEvents = () => {
+interface Props {
+    filterDate: Date | null;
+}
+
+const UpcomingEvents : FC<Props> = ({ filterDate }) => {
 
     const { classes } = useClasses();
 
@@ -32,6 +36,7 @@ const UpcomingEvents = () => {
                         <ClassView 
                             key={classData.id}
                             classData={classData}
+                            filterDate={filterDate}
                         />
                     ))
                 }

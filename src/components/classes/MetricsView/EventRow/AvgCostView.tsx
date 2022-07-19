@@ -10,6 +10,7 @@ interface Props {
 const AvgCostView : FC<Props> = ({ dollarsPerPound }) => (
     <Stack>
         <Typography
+            variant='h6'
             fontWeight='bold'
         >
             ${dollarsPerPound.toFixed(2)} Per Pound

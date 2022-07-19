@@ -10,6 +10,7 @@ interface Props {
 const ValueView : FC<Props> = ({ dollars }) => (
     <Stack>
         <Typography
+            variant='h5'
             fontWeight='bold'
             color='success.main'
         >

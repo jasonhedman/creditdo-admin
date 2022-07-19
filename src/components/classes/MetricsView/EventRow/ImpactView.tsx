@@ -21,13 +21,14 @@ const ImpactView : FC<Props> = ({ meals }) => (
         <Typography
             fontWeight='bold'
             color='white'
+            variant='h5'
         >
-            {meals}
+            {meals.toFixed(0)}
         </Typography>
         <Typography
             fontWeight='bold'
             color='white'
-            variant='caption'
+            variant='body2'
         >
             Meals
         </Typography>

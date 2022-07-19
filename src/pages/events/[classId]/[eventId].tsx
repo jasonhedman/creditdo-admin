@@ -9,17 +9,13 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
 import DashboardLayout from '../../../components/layout/DashboardLayout';
-import PageHeader from '../../../components/utility/PageHeader';
-
-import useEvent from '../../../hooks/useEvent';
+import EventComponent from '../../../components/event';
 
 const Work : NextPage = () => {
 
     const { query } = useRouter();
 
-    // const { classId, eventId } = query;
-
-    // const { event } = useEvent(classId as string, eventId as string);
+    const { classId, eventId } = query;
 
     return (
         <DashboardLayout>
@@ -41,9 +37,14 @@ const Work : NextPage = () => {
                     <Stack
                         spacing={4}
                     >
-                        <PageHeader 
-                            title='Event Details'
-                        />
+                        {
+                            classId && eventId && (
+                                <EventComponent 
+                                    classId={classId as string}
+                                    eventId={eventId as string}
+                                />
+                            )
+                        }
                     </Stack>
                 </Container>
             </Box>

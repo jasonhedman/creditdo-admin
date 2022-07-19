@@ -18,8 +18,10 @@ const CollectedView : FC<Props> = ({ collectedPounds }) => (
         <Stack
             direction='row'
             ml='auto'
+            alignItems='center'
         >
-            <TakeoutDiningIcon 
+            <TakeoutDiningIcon
+                fontSize='small'
                 sx={{
                     color: 'gray'
                 }}
@@ -39,14 +41,14 @@ const CollectedView : FC<Props> = ({ collectedPounds }) => (
             <Stack>
                 <Typography
                     fontWeight='bold'
-                    variant='body2'
+                    variant='h5'
                     color='secondary.main'
                 >
                     {collectedPounds}
                 </Typography>
                 <Typography
                     fontWeight='bold'
-                    variant='caption'
+                    variant='body2'
                     color='secondary.main'
                 >
                     Pounds

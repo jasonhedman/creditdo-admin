@@ -13,6 +13,7 @@ import DashboardLayout from '../components/layout/DashboardLayout';
 import UpcomingEvents from '../components/work/UpcomingEvents';
 import Calendar from '../components/work/Calendar';
 import PageHeader from '../components/utility/PageHeader';
+import WorkComponent from '../components/work';
 
 const Work : NextPage = () => {
   return (
@@ -50,17 +51,7 @@ const Work : NextPage = () => {
                             </Link>
                         }
                     />
-                    <Stack
-                        direction='row'
-                        spacing={1}
-                    >
-                        <UpcomingEvents />
-                        <Stack
-                            flex={1}
-                        >
-                            <Calendar />
-                        </Stack>
-                    </Stack>
+                    <WorkComponent />
                 </Stack>
             </Container>
         </Box>

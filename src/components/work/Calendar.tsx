@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import { FC } from 'react'
+
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button'
 
 import { default as CalendarComponent } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -79,17 +82,29 @@ const CalendarContainer = styled.div`
 
 `;
 
-const Calendar = () => {
+interface Props {
+    filterDate: Date | null;
+    setDate: (date: Date | null) => void;
+}
 
-    const [date, setDate] = useState<Date>(new Date());
+const Calendar : FC<Props> = ({ filterDate, setDate }) => {
 
     return (
-        <CalendarContainer>
-            <CalendarComponent 
-                onChange={(date) => setDate(date)}
-                value={date}
-            />
-        </CalendarContainer>
+        <Stack
+            alignItems='center'
+        >
+            <CalendarContainer>
+                <CalendarComponent 
+                    onChange={(date) => setDate(date)}
+                    value={filterDate}
+                />
+            </CalendarContainer>
+            <Button
+                onClick={() => setDate(null)}
+            >
+                Clear
+            </Button>
+        </Stack>
     )
 }
 

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Link from 'next/link';
+
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,10 +11,11 @@ import UserAvatars from '../../utility/UserAvatars';
 import moment from 'moment';
 
 interface Props {
-    event: Event
+    classId: string;
+    event: Event;
 }
 
-const EventDisplay : React.FC<Props> = ({ event }) => {
+const EventDisplay : React.FC<Props> = ({ classId, event }) => {
 
     const date = moment(event.date.seconds * 1000);
 
@@ -59,12 +62,20 @@ const EventDisplay : React.FC<Props> = ({ event }) => {
             </Stack>
         </Box>
         <Stack>
-            <Typography
-                variant='h6'
-                py={1}
+            <Link
+                href={`/events/${classId}/${event.id}`}
+                passHref
             >
-                {event.title}
-            </Typography>
+                <Typography
+                    variant='h6'
+                    py={1}
+                    sx={{
+                        cursor: 'pointer'
+                    }}
+                >
+                    {event.title}
+                </Typography>
+            </Link>
             <Typography
                 variant='body2'
             >
