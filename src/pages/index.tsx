@@ -25,8 +25,8 @@ const Dashboard : NextPage = () => {
       alignItems='center'
       justifyContent='center'
       sx={{
-        height: '100%',
-        width: '100%',
+        minHeight: '100vh',
+        minWidth: '100%',
       }}
     >
       <CircularProgress />
