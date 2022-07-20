@@ -3,14 +3,14 @@ import { FC } from 'react'
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 
-import { colWidths } from '../types'
+import { colWidths } from '../../types'
 
 import StudentDisplay from './StudentDisplay'
 import LessonProgress from './LessonProgress'
 import HoursDisplay from './LessonProgress/HoursDisplay'
 import EventsDisplay from './LessonProgress/EventsDisplay'
 
-import { Student } from '../../../../hooks/types'
+import { Student } from '../../../../../hooks/types'
 import ScoreCircle from './LessonProgress/ScoreCircle'
 
 interface Props {

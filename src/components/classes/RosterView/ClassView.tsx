@@ -1,15 +1,13 @@
 import { useState, FC } from 'react'
 
-import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack';
 
 import ClassHeader from './ClassHeader'
-import HeaderRow from './HeaderRow'
-import StudentRow from './StudentRow';
-import AddStudent from './AddStudent';
 
 import { Class } from '../../../hooks/types';
 import useStudents from '../../../hooks/useStudents';
+import ViewMode from './ViewMode';
+import EditMode from './EditMode';
 
 interface Props {
     classData: Class
@@ -18,6 +16,7 @@ interface Props {
 const ClassView : FC<Props> = ({ classData }) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
     const { students } = useStudents(classData.id);
 
@@ -29,25 +28,24 @@ const ClassView : FC<Props> = ({ classData }) => {
                 classData={classData}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
+                isEditMode={isEditMode}
+                setIsEditMode={setIsEditMode}
             />
-            <Grid 
-                container
-                spacing={2}
-            >
-                <HeaderRow />
-                {
-                    students.map(student => (
-                        <StudentRow 
-                            key={student.id}
-                            student={student}
+            {
+                isOpen && (
+                    isEditMode ? (
+                        <EditMode 
+                            classId={classData.id}
+                            students={students}
+                        />
+                    ) : (
+                        <ViewMode 
+                            students={students}
                             classId={classData.id}
                         />
-                    ))
-                }
-            </Grid>
-            <AddStudent
-                classId={classData.id}
-            />
+                    )
+                )
+            }
         </Stack>
     )
 }

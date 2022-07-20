@@ -7,10 +7,16 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 
-import { createStudent } from '../../../services/students';
+import { createStudent } from '../../../../services/students';
 
 interface Props {
   classId: string
+}
+
+const labelMapping = {
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  parentEmail: 'Parent Email',
 }
 
 const AddStudent : FC<Props> = ({ classId }) => {
@@ -19,6 +25,7 @@ const AddStudent : FC<Props> = ({ classId }) => {
     initialValues: {
       firstName: '',
       lastName: '',
+      parentEmail: '',
     },
     validationSchema: Yup.object({
       firstName: Yup
@@ -29,6 +36,10 @@ const AddStudent : FC<Props> = ({ classId }) => {
         .string()
         .max(255)
         .required('Last name is required'),
+      parentEmail: Yup
+        .string()
+        .email('Email is invalid')
+        .required('Email is required'),
     }),
     onSubmit: async () => {
       await createStudent(classId, {...formik.values});
@@ -42,28 +53,21 @@ const AddStudent : FC<Props> = ({ classId }) => {
         alignItems='center'
         spacing={2}
     >
-      <TextField
-        error={Boolean(formik.touched.firstName && formik.errors.firstName)}
-        fullWidth
-        helperText={formik.touched.firstName && formik.errors.firstName}
-        label="First Name"
-        name="firstName"
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-        value={formik.values.firstName}
-        variant="outlined"
-      />
-      <TextField
-        error={Boolean(formik.touched.lastName && formik.errors.lastName)}
-        fullWidth
-        helperText={formik.touched.lastName && formik.errors.lastName}
-        label="Last Name"
-        name="lastName"
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
-        value={formik.values.lastName}
-        variant="outlined"
-      />
+      {
+        Object.keys(formik.values).map(key => (
+          <TextField
+            fullWidth
+            error={Boolean(formik.touched[key] && formik.errors[key])}
+            helperText={formik.touched[key] && formik.errors[key]}
+            key={key}
+            label={labelMapping[key]}
+            value={formik.values[key]}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            name={key}
+          />
+        ))
+      }
       <Button
           variant="contained"
           onClick={() => formik.handleSubmit()}

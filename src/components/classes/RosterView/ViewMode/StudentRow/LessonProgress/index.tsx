@@ -4,9 +4,9 @@ import Stack from '@mui/material/Stack'
 
 import ProgressStep from './ProgressStep'
 
-import useLessons from '../../../../../hooks/useLessons'
+import useLessons from '../../../../../../hooks/useLessons'
 
-import { getLessonStatus } from '../../../../../services/utils'
+import { getLessonStatus } from '../../../../../../services/utils'
 
 import type { Status } from './types'
 

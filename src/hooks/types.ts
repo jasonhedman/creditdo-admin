@@ -41,6 +41,7 @@ export interface Student {
     id: string;
 	firstName: string;
     lastName: string;
+	parentEmail: string;
 }
 
 export interface ToDo {

@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
-import { colWidths } from './types'
+import { colWidths } from '../types'
 
 const rows = [
     'Student',
