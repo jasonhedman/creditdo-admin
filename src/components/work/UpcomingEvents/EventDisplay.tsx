@@ -3,8 +3,8 @@ import React from 'react'
 import Link from 'next/link';
 
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 
 import { Event } from '../../../hooks/types';
 import UserAvatars from '../../utility/UserAvatars';
@@ -17,83 +17,89 @@ interface Props {
 
 const EventDisplay : React.FC<Props> = ({ classId, event }) => {
 
-    const date = moment(event.date.seconds * 1000);
+    const theme = useTheme();
 
-  return (
-    <Stack
-        direction="row"
-        alignItems="center"
-        spacing={4}
-    >
-        <Box
-            sx={{
-                width: 150,
-                height: 100,
-                position: 'relative',
-                backgroundImage: `url('/static/images/food_drive.jpg')`,
-                backgroundSize: 'cover',
-                borderRadius: 1
-            }}
+    const startDate = moment(event.startDate.seconds * 1000);
+    const endDate = moment(event.endDate.seconds * 1000);
+
+    return (
+        <Stack
+            direction="row"
+            alignItems="center"
+            spacing={2}
         >
             <Stack
+                p={1}
+                borderRadius={1}
                 alignItems='center'
-                p={0.5}
                 sx={{
-                    position: 'absolute',
-                    top: '0.5rem',
-                    left: '0.5rem',
-                    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-                    borderRadius: 1
+                    backgroundColor: theme.palette.primary.main,
+                    color: '#FFF',
                 }}
             >
-                <Typography
-                    variant='body2'
-                    color='white'
-                >
-                    {date.format('MMM')}
+                <Typography variant='body1'>
+                    {startDate.format('MMM')}
                 </Typography>
                 <Typography
-                    variant='body1'
-                    color='white'
-                    fontWeight='bold'
+                    fontSize='1.25rem'
                 >
-                    {date.format('DD')}
+                    {startDate.format('D')}
                 </Typography>
             </Stack>
-        </Box>
-        <Stack>
-            <Link
-                href={`/events/${classId}/${event.id}`}
-                passHref
+            <Typography>
+                -
+            </Typography>
+            <Stack
+                p={1}
+                borderRadius={1}
+                alignItems='center'
+                sx={{
+                    backgroundColor: theme.palette.primary.main,
+                    color: '#FFF',
+                }}
             >
-                <Typography
-                    variant='h6'
-                    py={1}
-                    sx={{
-                        cursor: 'pointer'
-                    }}
-                >
-                    {event.title}
+                <Typography variant='body1'>
+                    {endDate.format('MMM')}
                 </Typography>
-            </Link>
-            <Typography
-                variant='body2'
-            >
-                {date.format('ddd, h:mma')}
-            </Typography>
-            <Typography
-                variant='body2'
-                mb={1}
-            >
-                {event.address}
-            </Typography>
-            <UserAvatars 
-                size={25}
-                numStudents={event.participants.length}
-            />
+                <Typography
+                    fontSize='1.25rem'
+                >
+                    {endDate.format('D')}
+                </Typography>
+            </Stack>
+            <Stack>
+                <Link
+                    href={`/events/${classId}/${event.id}`}
+                    passHref
+                >
+                    <Typography
+                        variant='h6'
+                        py={1}
+                        sx={{
+                            cursor: 'pointer'
+                        }}
+                    >
+                        {event.title}
+                    </Typography>
+                </Link>
+                <Typography
+                    variant='body2'
+                >
+                    {startDate.format('ddd, h:mma')}
+                </Typography>
+                <Typography
+                    variant='body2'
+                    mb={1}
+                >
+                    {event.address}
+                </Typography>
+                <UserAvatars 
+                    size={25}
+                    numStudents={event.participants.length}
+                />
+            </Stack>
         </Stack>
-    </Stack>
-  )
+    )
 }
 
 export default EventDisplay

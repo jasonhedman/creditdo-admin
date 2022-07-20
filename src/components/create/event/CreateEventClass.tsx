@@ -26,19 +26,27 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
     const formik = useFormik({
         initialValues: {
             title: '',
-            date: new Date(),
+            startDate: null,
+            endDate: null,
             address: '',
         },
         validationSchema: Yup.object({
-          title: Yup
-            .string()
-            .max(255)
-            .required(
-                'Title is required'),
-            date: Yup
-              .date()
-              .required(
-                  'Date is required'),
+            title: Yup
+                .string()
+                .max(255)
+                .required(
+                    'Title is required'),
+            startDate: Yup
+                .date()
+                .nullable()
+                .required(
+                    'Start date is required'),
+            endDate: Yup
+                .date()
+                .nullable()
+                .required(
+                    'End date is required')
+                .min(Yup.ref('startDate'), 'End date must be after start date'),
             address: Yup
                 .string()
                 .max(255)
@@ -79,6 +87,7 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
         <form onSubmit={formik.handleSubmit}>
             <Stack
                 alignItems='center'
+                spacing={4}
             >
                 <Typography
                     color="textPrimary"
@@ -92,21 +101,46 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
                         fullWidth
                         helperText={formik.touched.title && formik.errors.title}
                         label="Event Title"
-                        margin="normal"
                         name="title"
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
                         value={formik.values.title}
                         variant="outlined"
                     />
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <LocalizationProvider 
+                        dateAdapter={AdapterDateFns}
+                    >
                         <DateTimePicker
-                            label="Event Date"
-                            value={formik.values.date}
+                            label="Start Date"
+                            value={formik.values.startDate}
                             onChange={(val) => {
-                                formik.setFieldValue('date', val);
+                                formik.setFieldValue('startDate', val);
                             }}
-                            renderInput={(params) => <TextField {...params} />}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    name="startDate"
+                                    onBlur={formik.handleBlur}
+                                    error={Boolean(formik.touched.startDate && formik.errors.startDate)}
+                                    helperText={formik.touched.startDate && formik.errors.startDate}
+                                />
+                            )}
+                        />
+                        <DateTimePicker
+                            label="End Date"
+                            value={formik.values.endDate}
+                            onChange={(val) => {
+                                formik.setFieldValue('endDate', val);
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    name="endDate"
+                                    error={Boolean(formik.touched.endDate && formik.errors.endDate)}
+                                    helperText={formik.touched.endDate && formik.errors.endDate}
+                                    onBlur={formik.handleBlur}
+                                />
+                            )}
                         />
                     </LocalizationProvider>
                     <TextField
@@ -114,7 +148,6 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
                         fullWidth
                         helperText={formik.touched.address && formik.errors.address}
                         label="Event Address"
-                        margin="normal"
                         name="address"
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
@@ -122,21 +155,15 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
                         variant="outlined"
                     />
                 </Stack>
-                <Stack
-                    py={2}
-                    spacing={1}
+                <Button
+                    color="primary"
+                    disabled={Boolean(Object.keys(formik.errors).length) || formik.isSubmitting}
+                    size="large"
+                    type="submit"
+                    variant="contained"
                 >
-                    <Button
-                        color="primary"
-                        disabled={formik.isSubmitting}
-                        fullWidth
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                    >
-                        Create Event
-                    </Button>
-                </Stack>
+                    Create Event
+                </Button>
             </Stack>
         </form>
     )

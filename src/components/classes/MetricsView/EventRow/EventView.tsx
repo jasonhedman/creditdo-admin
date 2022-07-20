@@ -13,7 +13,7 @@ interface Props {
 
 const EventView : FC<Props> = ({ event }) => {
 
-    const date = moment(event.date.seconds * 1000);
+    const date = moment(event.startDate.seconds * 1000);
 
     return (
         <Stack

@@ -11,8 +11,8 @@ const useUpcomingEvent = (classId : string) => {
 
     const [events, loading, error] = useCollectionDataOnce<Event>(query(
         collection(db, "classes", classId, "events") as CollectionReference<Event>, 
-        where('date', '>', now),
-        orderBy('date', 'asc'),
+        where('endDate', '>', now),
+        orderBy('endDate', 'asc'),
         limit(1),
     ));
 

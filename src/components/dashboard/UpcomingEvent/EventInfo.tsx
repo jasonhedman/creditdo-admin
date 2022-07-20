@@ -16,7 +16,8 @@ const EventInfo : FC<Props> = ({ event }) => {
 
     const theme = useTheme();
 
-    const date = moment(event.date.seconds * 1000);
+    const startDate = moment(event.startDate.seconds * 1000);
+    const endDate = moment(event.endDate.seconds * 1000);
 
     return (
         <Stack
@@ -34,12 +35,33 @@ const EventInfo : FC<Props> = ({ event }) => {
                 }}
             >
                 <Typography variant='body1'>
-                    {date.format('MMM')}
+                    {startDate.format('MMM')}
                 </Typography>
                 <Typography
                     fontSize='1.25rem'
                 >
-                    {date.format('D')}
+                    {startDate.format('D')}
+                </Typography>
+            </Stack>
+            <Typography>
+                -
+            </Typography>
+            <Stack
+                p={1}
+                borderRadius={1}
+                alignItems='center'
+                sx={{
+                    backgroundColor: theme.palette.secondary.main,
+                    color: '#FFF',
+                }}
+            >
+                <Typography variant='body1'>
+                    {endDate.format('MMM')}
+                </Typography>
+                <Typography
+                    fontSize='1.25rem'
+                >
+                    {endDate.format('D')}
                 </Typography>
             </Stack>
             <Stack>
@@ -52,7 +74,7 @@ const EventInfo : FC<Props> = ({ event }) => {
                 <Typography
                     variant='body2'
                 >
-                    {date.format('ddd, h:mm A')}
+                    {startDate.format('ddd, h:mm A')}
                 </Typography>
                 <Typography
                     variant='body2'

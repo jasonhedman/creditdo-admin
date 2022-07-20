@@ -29,7 +29,7 @@ const ClassView : FC<Props> = ({ classData, filterDate }) => {
             />
             {
                 isOpen && events
-                    .filter(event => !filterDate || moment(event.date.seconds * 1000).isSame(filterDate, 'day'))
+                    .filter(event => !filterDate || moment(event.startDate.seconds * 1000).isSame(filterDate, 'day'))
                     .map((event, index) => (
                     <EventDisplay
                         key={index}

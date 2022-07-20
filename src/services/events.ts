@@ -3,7 +3,8 @@ import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 
 interface EventInput {
     title: string;
-    date: Date;
+    startDate: Date;
+    endDate: Date;
     address: string;
 }
 

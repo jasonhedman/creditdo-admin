@@ -13,7 +13,8 @@ interface Time {
 export interface Event {
     id: string;
 	title: string;
-	date: Time;
+	startDate: Time;
+	endDate: Time;
 	address: string;
 	participants: string[]; // array of ids
 	complete: boolean;

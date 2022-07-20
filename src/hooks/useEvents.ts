@@ -10,9 +10,9 @@ const now = new Date();
 const useEvents = (classId : string) => {
     
     const [events, loading, error] = useCollection<Event>(query(
-        collection(db, "classes", classId, "events") as CollectionReference<Event>, 
-        where('date', '>', now),
-        orderBy('date', 'asc'), 
+        collection(db, "classes", classId, "events") as CollectionReference<Event>,
+        where('endDate', '>', now),
+        orderBy('endDate', 'asc'), 
     ));
 
     return {
