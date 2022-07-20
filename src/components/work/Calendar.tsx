@@ -94,7 +94,7 @@ const Calendar : FC<Props> = ({ filterDate, setDate }) => {
         >
             <CalendarContainer>
                 <CalendarComponent 
-                    onChange={(date) => setDate(date)}
+                    onChange={(date) => {date.setMinutes(1); setDate(date);}}
                     value={filterDate}
                 />
             </CalendarContainer>
