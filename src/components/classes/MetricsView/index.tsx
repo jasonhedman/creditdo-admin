@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Stack from '@mui/material/Stack'
+import Skeleton from '@mui/material/Skeleton'
+import Typography from '@mui/material/Typography'
 
 import ClassView from './ClassView'
 
@@ -11,14 +13,29 @@ const MetricsView = () => {
     const { classes, loading } = useClasses();
 
     return (
-        <Stack>
+        <Stack
+            spacing={2}
+        >
             {
-                classes.map(classData => (
-                    <ClassView
-                        key={classData.id}
-                        classData={classData}
+                loading ? (
+                    <Skeleton 
+                        variant="rectangular" 
+                        height={100} 
                     />
-                ))
+                ) : (
+                    classes.length > 0 ? (
+                        classes.map(classData => (
+                            <ClassView
+                                key={classData.id}
+                                classData={classData}
+                            />
+                        ))
+                    ) : (
+                        <Typography>
+                            No classes found.
+                        </Typography>
+                    )
+                )
             }
         </Stack>
     )

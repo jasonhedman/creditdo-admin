@@ -8,8 +8,9 @@ import {
   CardContent,
   CardHeader,
   Divider,
-  Grid,
-  TextField
+  TextField,
+  Avatar,
+  Stack,
 } from '@mui/material';
 
 import { UserData } from '../../hooks/types';
@@ -26,6 +27,7 @@ export const AccountProfileDetails: React.FC<Props> = ({ user, updateUser }) => 
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
+      profilePicture: user.profilePicture
     },
     validationSchema: Yup.object({
       email: Yup
@@ -45,33 +47,65 @@ export const AccountProfileDetails: React.FC<Props> = ({ user, updateUser }) => 
         .max(255)
         .required(
           'Last name is required'),
+      profilePicture: Yup
+        .string()
+        .max(255)
+        .required(
+          'Profile picture is required'),
     }),
     onSubmit: async () => {
-      // console.log(formik.values);
       updateUser(formik.values);
     }
   });
+
+  const randomizeAvatar = () => {
+    formik.setFieldValue(
+      'profilePicture', 
+      `https://api.multiavatar.com/${Math.random().toString(8).substring(2)}.png`
+    );
+  }
 
   return (
     <form
       autoComplete="off"
       onSubmit={formik.handleSubmit}
     >
-      <Card>
+      <Card
+        variant="outlined"
+      >
         <CardHeader
           subheader="Edit your profile information"
           title="Profile"
         />
         <Divider />
         <CardContent>
-          <Grid
-            container
-            spacing={3}
+          <Stack
+            alignItems='center'
+            spacing={4}
           >
-            <Grid
-              item
-              md={6}
-              xs={12}
+            <Stack
+              alignItems='center'
+              spacing={1}
+            >
+              <Avatar
+                alt='Profile picture'
+                src={formik.values.profilePicture}
+                sx={{
+                  height: 64,
+                  width: 64
+                }}
+              />
+              <Button
+                color='primary'
+                onClick={randomizeAvatar}
+                variant='text'
+              >
+                Randomize
+              </Button>
+            </Stack>
+            <Stack
+              direction='row'
+              spacing={2}
             >
               <TextField
                 error={Boolean(formik.touched.firstName && formik.errors.firstName)}
@@ -84,12 +118,6 @@ export const AccountProfileDetails: React.FC<Props> = ({ user, updateUser }) => 
                 value={formik.values.firstName}
                 variant="outlined"
               />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
               <TextField
                 error={Boolean(formik.touched.lastName && formik.errors.lastName)}
                 fullWidth
@@ -101,26 +129,20 @@ export const AccountProfileDetails: React.FC<Props> = ({ user, updateUser }) => 
                 value={formik.values.lastName}
                 variant="outlined"
               />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                error={Boolean(formik.touched.email && formik.errors.email)}
-                fullWidth
-                helperText={formik.touched.email && formik.errors.email}
-                label="Email Address"
-                name="email"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                type="email"
-                value={formik.values.email}
-                variant="outlined"
-              />
-            </Grid>
-          </Grid>
+            </Stack>
+            <TextField
+              error={Boolean(formik.touched.email && formik.errors.email)}
+              fullWidth
+              helperText={formik.touched.email && formik.errors.email}
+              label="Email Address"
+              name="email"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              type="email"
+              value={formik.values.email}
+              variant="outlined"
+            />
+          </Stack>
         </CardContent>
         <Divider />
         <Box

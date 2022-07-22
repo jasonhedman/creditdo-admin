@@ -104,9 +104,9 @@ const DashboardNavbar : React.FC<Props> = ({ onSidebarOpen, ...other}) => {
                 sx={{
                   height: 40,
                   width: 40,
-                  ml: 1
+                  ml: 2
                 }}
-                src="/static/images/avatars/avatar_1.png"
+                src={user.profilePicture}
               >
                 <UserCircleIcon fontSize="small" />
               </Avatar>

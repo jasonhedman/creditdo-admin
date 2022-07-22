@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 
-import { Box, Container, Grid, Typography, Stack, CircularProgress } from '@mui/material';
+import { Box, Container, Grid, Typography, Stack, CircularProgress, Button } from '@mui/material';
 
 import { AccountProfile } from '../components/account/AccountProfile';
 import { AccountProfileDetails } from '../components/account/AccountProfileDetails';
@@ -15,7 +15,7 @@ const Account : NextPage = () => {
 
   const router = useRouter();
 
-  const { loading, auth, user, updateUser } = useAuth();
+  const { loading, auth, user, updateUser, signOut } = useAuth();
 
   if (loading) return (
     <Stack
@@ -51,38 +51,26 @@ const Account : NextPage = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Typography
-            sx={{ mb: 3 }}
-            variant="h4"
+          <Stack
+            spacing={2}
+            alignItems='center'
           >
-            Account
-          </Typography>
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              lg={4}
-              md={6}
-              xs={12}
+            <Typography
+              variant="h4"
             >
-              <AccountProfile
-                user={user}
-              />
-            </Grid>
-            <Grid
-              item
-              lg={8}
-              md={6}
-              xs={12}
+              Account
+            </Typography>
+            <AccountProfileDetails
+              user={user}
+              updateUser={updateUser}
+            />
+            <Button
+              color="error"
+              onClick={signOut}
             >
-              <AccountProfileDetails
-                user={user}
-                updateUser={updateUser}
-              />
-            </Grid>
-          </Grid>
+              Sign Out
+            </Button>
+          </Stack>
         </Container>
       </Box>
     </DashboardLayout>

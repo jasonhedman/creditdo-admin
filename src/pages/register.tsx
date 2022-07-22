@@ -17,7 +17,8 @@ import {
   Link,
   Stack,
   TextField,
-  Typography
+  Typography,
+  Avatar
 } from '@mui/material';
 
 import useAuth from '../hooks/useAuth';
@@ -37,7 +38,8 @@ const Register  : NextPage = () => {
       firstName: '',
       lastName: '',
       password: '',
-      policy: false
+      policy: false,
+      profilePicture: '',
     },
     validationSchema: Yup.object({
       email: Yup
@@ -67,7 +69,12 @@ const Register  : NextPage = () => {
         .oneOf(
           [true],
           'This field must be checked'
-        )
+        ),
+      profilePicture: Yup
+        .string()
+        .max(255)
+        .required(
+          'Profile picture is required'),
     }),
     onSubmit: async () => {
       signUp(formik.values.email, formik.values.password, pick(formik.values, userDataKeys))
@@ -82,6 +89,13 @@ const Register  : NextPage = () => {
     router.push('/');
   }
 
+  const randomizeAvatar = () => {
+    formik.setFieldValue(
+      'profilePicture', 
+      `https://api.multiavatar.com/${Math.random().toString(8).substring(2)}.png`
+    );
+  }
+
   return (
     <>
       <Head>
@@ -91,108 +105,141 @@ const Register  : NextPage = () => {
       </Head>
       <Box
         component="main"
+        py={4}
         sx={{
           alignItems: 'center',
           display: 'flex',
           flexGrow: 1,
-          minHeight: '100%'
+          minHeight: '100%',
         }}
       >
-        <Container maxWidth="sm">
+        <Container
+          maxWidth="sm"
+        >
           <form onSubmit={formik.handleSubmit}>
-            <Typography
-              color="textPrimary"
-              variant="h4"
+            <Stack
+              alignItems='center'
+              spacing={2}
             >
-              Create a New Account
-            </Typography>
-            <TextField
-              error={Boolean(formik.touched.firstName && formik.errors.firstName)}
-              fullWidth
-              helperText={formik.touched.firstName && formik.errors.firstName}
-              label="First Name"
-              margin="normal"
-              name="firstName"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.firstName}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.lastName && formik.errors.lastName)}
-              fullWidth
-              helperText={formik.touched.lastName && formik.errors.lastName}
-              label="Last Name"
-              margin="normal"
-              name="lastName"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.lastName}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.email && formik.errors.email)}
-              fullWidth
-              helperText={formik.touched.email && formik.errors.email}
-              label="Email Address"
-              margin="normal"
-              name="email"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="email"
-              value={formik.values.email}
-              variant="outlined"
-            />
-            <TextField
-              error={Boolean(formik.touched.password && formik.errors.password)}
-              fullWidth
-              helperText={formik.touched.password && formik.errors.password}
-              label="Password"
-              margin="normal"
-              name="password"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              type="password"
-              value={formik.values.password}
-              variant="outlined"
-            />
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-                ml: -1
-              }}
-            >
-              <Checkbox
-                checked={formik.values.policy}
-                name="policy"
-                onChange={formik.handleChange}
-              />
               <Typography
-                color="textSecondary"
-                variant="body2"
+                color="textPrimary"
+                variant="h4"
               >
-                I have read the
-                {' '}
-                <NextLink
-                  href="#"
-                  passHref
-                >
-                  <Link
-                    color="primary"
-                    underline="always"
-                    variant="subtitle2"
-                  >
-                    Terms and Conditions
-                  </Link>
-                </NextLink>
+                Create a New Account
               </Typography>
-            </Box>
-            {Boolean(formik.touched.policy && formik.errors.policy) && (
-              <FormHelperText error>
-                {formik.errors.policy}
-              </FormHelperText>
-            )}
+              <Stack
+                alignItems='center'
+                spacing={0}
+              >
+                <Avatar
+                  alt='Profile picture'
+                  src={formik.values.profilePicture}
+                  sx={{
+                    height: 64,
+                    width: 64
+                  }}
+                />
+                <Button
+                  color='primary'
+                  onClick={randomizeAvatar}
+                  variant='text'
+                >
+                  Randomize
+                </Button>
+                {
+                  formik.errors.profilePicture && (
+                    <Typography
+                      variant='caption'
+                      color="error"
+                    >
+                      {formik.errors.profilePicture}
+                    </Typography>
+                  )
+                }
+              </Stack>
+              <TextField
+                error={Boolean(formik.touched.firstName && formik.errors.firstName)}
+                fullWidth
+                helperText={formik.touched.firstName && formik.errors.firstName}
+                label="First Name"
+                name="firstName"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.firstName}
+                variant="outlined"
+              />
+              <TextField
+                error={Boolean(formik.touched.lastName && formik.errors.lastName)}
+                fullWidth
+                helperText={formik.touched.lastName && formik.errors.lastName}
+                label="Last Name"
+                name="lastName"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.lastName}
+                variant="outlined"
+              />
+              <TextField
+                error={Boolean(formik.touched.email && formik.errors.email)}
+                fullWidth
+                helperText={formik.touched.email && formik.errors.email}
+                label="Email Address"
+                name="email"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                type="email"
+                value={formik.values.email}
+                variant="outlined"
+              />
+              <TextField
+                error={Boolean(formik.touched.password && formik.errors.password)}
+                fullWidth
+                helperText={formik.touched.password && formik.errors.password}
+                label="Password"
+                name="password"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                type="password"
+                value={formik.values.password}
+                variant="outlined"
+              />
+              <Box
+                sx={{
+                  alignItems: 'center',
+                  display: 'flex',
+                }}
+              >
+                <Checkbox
+                  checked={formik.values.policy}
+                  name="policy"
+                  onChange={formik.handleChange}
+                />
+                <Typography
+                  color="textSecondary"
+                  variant="body2"
+                >
+                  I have read the
+                  {' '}
+                  <NextLink
+                    href="#"
+                    passHref
+                  >
+                    <Link
+                      color="primary"
+                      underline="always"
+                      variant="subtitle2"
+                    >
+                      Terms and Conditions
+                    </Link>
+                  </NextLink>
+                </Typography>
+              </Box>
+              {Boolean(formik.touched.policy && formik.errors.policy) && (
+                <FormHelperText error>
+                  {formik.errors.policy}
+                </FormHelperText>
+              )}
+            </Stack>
             <Stack
               py={2}
               spacing={1}

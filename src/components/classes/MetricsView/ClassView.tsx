@@ -2,6 +2,8 @@ import { useState, FC } from 'react'
 
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 
 import ClassHeader from './ClassHeader'
 import HeaderRow from './HeaderRow'
@@ -29,20 +31,32 @@ const ClassView : FC<Props> = ({ classData }) => {
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
             />
-            <Grid 
-                container
-                spacing={2}
-            >
-                <HeaderRow />
-                {
-                    events.map(event => (
-                        <EventRow
-                            key={event.id}
-                            event={event}
-                        />
-                    ))
-                }
-            </Grid>
+            {
+                loading ? (
+                    <Skeleton />
+                ) : (
+                    events.length > 0 ? (
+                        <Grid 
+                            container
+                            spacing={2}
+                        >
+                            <HeaderRow />
+                            {
+                                events.map(event => (
+                                    <EventRow
+                                        key={event.id}
+                                        event={event}
+                                    />
+                                ))
+                            }
+                        </Grid>
+                    ) : (
+                        <Typography>
+                            No events found.
+                        </Typography>
+                    )
+                )
+            }
         </Stack>
     )
 }

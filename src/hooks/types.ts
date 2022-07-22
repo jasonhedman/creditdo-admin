@@ -2,6 +2,7 @@ export interface UserData {
     email: string;
     firstName: string;
     lastName: string;
+	profilePicture: string;
 }
 export const userDataKeys = ['email', 'firstName', 'lastName'];
 

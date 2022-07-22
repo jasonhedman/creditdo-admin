@@ -15,7 +15,7 @@ interface Props {
 
 const ClassView : FC<Props> = ({ classData }) => {
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
     const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
     const { students } = useStudents(classData.id);
