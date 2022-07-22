@@ -24,9 +24,11 @@ const StudentDisplay : FC<Props> = ({ firstName, lastName }) => {
     >
       <Avatar 
         src={uri}
-        width={40}
-        height={40}
-        alt={`${firstName} ${lastName}`}
+        alt={`Profile picture`}
+        sx={{
+          height: 40,
+          width: 40
+        }}
       />
       <Typography>
         {lastName}, {firstName}

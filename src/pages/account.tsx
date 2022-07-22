@@ -2,9 +2,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 
-import { Box, Container, Grid, Typography, Stack, CircularProgress, Button } from '@mui/material';
+import { Box, Container, Typography, Stack, CircularProgress, Button } from '@mui/material';
 
-import { AccountProfile } from '../components/account/AccountProfile';
 import { AccountProfileDetails } from '../components/account/AccountProfileDetails';
 import DashboardLayout from '../components/layout/DashboardLayout';
 
