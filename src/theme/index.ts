@@ -14,6 +14,17 @@ declare module '@mui/material/styles' {
       800: string,
       900: string
     };
+    green: {
+      100: string,
+      200: string,
+      300: string,
+      400: string,
+      500: string,
+      600: string,
+      700: string,
+      800: string,
+      900: string
+    }
   }
 }
 
@@ -160,6 +171,18 @@ export const theme = createTheme({
       800: '#1F2937',
       900: '#111827'
     },
+    green: {
+      100: '#ddeec6',
+      200: '#c7e3a1',
+      300: '#b1d77b',
+      400: '#9fcf5d',
+      500: '#8ec63f',
+      600: '#7eb637',
+      700: '#69a22d',
+      800: '#558e24',
+      900: '#316c11'
+    },
+    
     action: {
       active: '#6B7280',
       focus: 'rgba(55, 65, 81, 0.12)',
