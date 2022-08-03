@@ -46,7 +46,7 @@ export interface Student {
 }
 
 export interface ToDo {
-	id: string;
+	id: number;
 	title: string;
 	description: string;
 	dueDate: Time;

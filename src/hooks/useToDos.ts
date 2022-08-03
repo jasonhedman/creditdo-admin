@@ -1,6 +1,6 @@
 import { db } from "../firebase/clientApp";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { collection, CollectionReference, doc, updateDoc } from "firebase/firestore";
+import { collection, CollectionReference, doc, updateDoc, orderBy, query } from "firebase/firestore";
 
 import moment from "moment";
 
@@ -13,7 +13,7 @@ type ToDoBuckets = {
 
 const useToDos = (classId : string) => {
 
-    const [toDos, loading, error] = useCollectionData<ToDo>(collection(db, "classes", classId, "toDos") as CollectionReference<ToDo>);
+    const [toDos, loading, error] = useCollectionData<ToDo>(query(collection(db, "classes", classId, "toDos") as CollectionReference<ToDo>, orderBy('id', 'asc')));
 
     const check = async (toDoId : string) => {
         return updateDoc(doc(db, "classes", classId, "toDos", toDoId), {completed: true});

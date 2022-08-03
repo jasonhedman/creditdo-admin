@@ -33,8 +33,8 @@ const ToDos : FC<Props> = ({ activeBucket, toDos, check, uncheck }) => {
                     <ToDo
                         key={index}
                         toDo={toDo}
-                        check={() => check(toDo.id)}
-                        uncheck={() => uncheck(toDo.id)}
+                        check={() => check(String(toDo.id))}
+                        uncheck={() => uncheck(String(toDo.id))}
                     />
                 ))
             ) : (

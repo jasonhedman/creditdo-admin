@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { Box, Container, CircularProgress, Stack, Button } from '@mui/material';
+import { Box, Container, CircularProgress, Stack, Button, Typography } from '@mui/material';
 
 import DashboardLayout from '../components/layout/DashboardLayout';
 import ClassView from '../components/dashboard/ClassView';
@@ -73,12 +73,31 @@ const Dashboard : NextPage = () => {
               }
             />
             {
-              classes.map(classData => (
-                <ClassView
-                  key={classData.id}
-                  classData={classData}
-                />
-              ))
+              classes.length > 0 ? (
+                classes.map(classData => (
+                  <ClassView
+                    key={classData.id}
+                    classData={classData}
+                  />
+                ))
+              ) : (
+                <Stack
+                  alignItems='center'
+                  spacing={2}
+                >
+                  <Typography>You have not created an classes yet.</Typography>
+                  <Link
+                    href='/create/class'
+                    passHref
+                  >
+                    <Button
+                        variant='contained'
+                    >
+                      Create Class
+                    </Button>
+                  </Link>
+                </Stack>
+              )
             }
           </Stack>
         </Container>

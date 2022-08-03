@@ -12,9 +12,9 @@ import MetricsView from '../components/classes/MetricsView';
 import RosterView from '../components/classes/RosterView';
 
 export const displayOptions = [
-    "Metrics",
     "Roster",
-    "Leaderboard"
+    "Leaderboard",
+    "Metrics",
 ] as const;
 export type DisplayOptionTypes = typeof displayOptions[number];  
 

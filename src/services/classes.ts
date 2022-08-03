@@ -31,6 +31,6 @@ const createLessons = async (classId: string) => {
 
 const createToDos = async (classId: string) => {
     await Promise.all(toDos.map(toDo => {
-        return setDoc(doc(db, "classes", classId, "toDos", toDo.id), toDo);
+        return setDoc(doc(db, "classes", classId, "toDos", String(toDo.id)), toDo);
     }))
 }

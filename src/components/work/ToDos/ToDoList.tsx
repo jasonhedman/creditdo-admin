@@ -53,8 +53,8 @@ const ToDoList : FC<Props> = ({ classView }) => {
                             <ToDo
                                 key={toDo.id}
                                 toDo={toDo}
-                                check={() => check(toDo.id)}
-                                uncheck={() => uncheck(toDo.id)}
+                                check={() => check(String(toDo.id))}
+                                uncheck={() => uncheck(String(toDo.id))}
                             />
                         ))
                     ) : (
