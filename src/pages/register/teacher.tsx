@@ -21,12 +21,12 @@ import {
   Avatar
 } from '@mui/material';
 
-import useAuth from '../hooks/useAuth';
-import { userDataKeys } from '../hooks/types';
+import useAuth from '../../hooks/useAuth';
+import { userDataKeys } from '../../hooks/types';
 
 var pick = require('lodash.pick');
 
-const Register  : NextPage = () => {
+const RegisterTeacher : NextPage = () => {
   const router = useRouter();
 
   const { user, signUp } = useAuth();
@@ -286,4 +286,4 @@ const Register  : NextPage = () => {
   );
 };
 
-export default Register;
+export default RegisterTeacher;
