@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider'
 import ToDo from '../../utility/ToDo'
 
 import { ToDo as ToDoType } from '../../../hooks/types'
+import { Box } from '@mui/system'
 
 interface Props {
     activeBucket: string;
@@ -27,25 +28,32 @@ const ToDos : FC<Props> = ({ activeBucket, toDos, check, uncheck }) => {
             {activeBucket}
         </Typography>
         <Divider />
-        {
-            toDos.length > 0 ? (
-                toDos.map((toDo, index) => (
-                    <ToDo
-                        key={index}
-                        toDo={toDo}
-                        check={() => check(String(toDo.id))}
-                        uncheck={() => uncheck(String(toDo.id))}
-                    />
-                ))
-            ) : (
-                <Typography
-                    variant="body1"
-                    color="textSecondary"
-                >
-                    No todos
-                </Typography>
-            )
-        }
+        <Box
+            sx={{
+                maxHeight: '200px',
+                overflowY: 'scroll',
+            }}
+        >
+            {
+                toDos.length > 0 ? (
+                    toDos.map((toDo, index) => (
+                        <ToDo
+                            key={index}
+                            toDo={toDo}
+                            check={() => check(String(toDo.id))}
+                            uncheck={() => uncheck(String(toDo.id))}
+                        />
+                    ))
+                ) : (
+                    <Typography
+                        variant="body1"
+                        color="textSecondary"
+                    >
+                        No todos
+                    </Typography>
+                )
+            }
+        </Box>
     </Stack>
   )
 }

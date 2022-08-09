@@ -1,6 +1,7 @@
 import {useState, FC} from 'react'
 
 import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
 
 import ClassHeader from './ClassHeader'
 import UpcomingEvent from '../UpcomingEvent';
@@ -26,14 +27,20 @@ const ClassView : FC<Props> = ({ classData }) => {
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
             />
-            <Stack
-                direction='row'
-                spacing={2}
+            <Box
+                display='grid'
+                gridTemplateColumns={`${isOpen ? '1' : '2'}fr 1fr`}
+                width='100%'
+                gap={isOpen ? 4 : 2}
             >
                 <Stack
                     direction={isOpen ? 'column' : 'row'}
                     spacing={isOpen ? 4 : 2}
                     flexGrow={isOpen ? 1 : 2}
+                    // sx={{
+                    //     gridColumnStart: '1',
+                    //     gridColumnEnd: '2',
+                    // }}
                 >
                     <UpcomingEvent
                         compact={!isOpen}
@@ -47,13 +54,16 @@ const ClassView : FC<Props> = ({ classData }) => {
                 <Stack
                     spacing={2}
                     flexGrow={1}
+                    // sx={{
+                    //     gridColumnStart: '1'
+                    // }}
                 >
                     <ImplementationProgress
                         compact={!isOpen}
                         classId={classData.id}
                     />
                 </Stack>
-            </Stack>
+            </Box>
         </Stack>
     )
 }
