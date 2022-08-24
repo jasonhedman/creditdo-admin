@@ -66,6 +66,7 @@ const ToDo : React.FC<Props> = ({ toDo, check, uncheck }) => {
                 <Typography
                     variant='body2'
                     color='textSecondary'
+                    whiteSpace='nowrap'
                 >
                     {dueDate.format('MMM DD')}
                 </Typography>

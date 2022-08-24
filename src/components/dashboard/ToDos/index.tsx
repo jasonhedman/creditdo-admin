@@ -49,7 +49,7 @@ const ToDos : FC<Props> = ({ activeBucket, toDos, check, uncheck }) => {
                         variant="body1"
                         color="textSecondary"
                     >
-                        No todos
+                        No To Dos
                     </Typography>
                 )
             }

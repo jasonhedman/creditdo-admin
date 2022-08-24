@@ -32,9 +32,7 @@ export interface Class {
 export interface Lesson {
     id: string;
 	title: string;
-	createdAt: Time;
 	lengthHours: number;
-	dueDate: Time;
 	completed: boolean;
 }
 
