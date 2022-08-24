@@ -22,9 +22,7 @@ const LessonView : React.FC<Props> = ({ lesson, complete, revert }) => {
 
     const status : Status = lesson.completed
         ? 'completed' 
-        : moment().isAfter(lesson.dueDate.seconds * 1000) 
-            ? 'pastDue'
-            : 'notStarted';
+        : 'notStarted';
 
     return (
         <Stack
@@ -38,11 +36,6 @@ const LessonView : React.FC<Props> = ({ lesson, complete, revert }) => {
                     variant='h6'
                 >
                     {lesson.title}
-                </Typography>
-                <Typography
-                    variant='body2'
-                >
-                    Due {moment(lesson.dueDate.seconds * 1000).fromNow()}
                 </Typography>
             </Stack>
             <Stack
