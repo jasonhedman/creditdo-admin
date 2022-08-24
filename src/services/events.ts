@@ -6,6 +6,7 @@ interface EventInput {
     startDate: Date;
     endDate: Date;
     address: string;
+    isVirtual: boolean;
 }
 
 interface EventData extends EventInput {

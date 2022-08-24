@@ -9,11 +9,14 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { createEvent } from '../../../services/events';
+import { FormatLineSpacing } from '@mui/icons-material';
 
 interface Props {
     classId: string;
@@ -29,6 +32,7 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
             startDate: null,
             endDate: null,
             address: '',
+            isVirtual: false,
         },
         validationSchema: Yup.object({
             title: Yup
@@ -52,6 +56,8 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
                 .max(255)
                 .required(
                     'Address is required'),
+            isVirtual: Yup
+                .boolean()
         }),
         onSubmit: async () => {
             await createEvent(classId, formik.values);
@@ -95,7 +101,10 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
                 >
                     Create an Event
                 </Typography>
-                <Stack spacing={2}>
+                <Stack 
+                    spacing={2}
+                    alignItems='center'
+                >
                     <TextField
                         error={Boolean(formik.touched.title && formik.errors.title)}
                         fullWidth
@@ -143,6 +152,22 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
                             )}
                         />
                     </LocalizationProvider>
+                    <FormControlLabel 
+                        control={
+                            <Switch
+                                checked={formik.values.isVirtual}
+                                onChange={(e) => {
+                                    formik.setFieldValue('isVirtual', e.target.checked);
+                                    if(e.target.checked) {
+                                        formik.setFieldValue('address', 'Virtual');
+                                    } else {
+                                        formik.setFieldValue('address', '');
+                                    }
+                                }} 
+                            />
+                        } 
+                        label={formik.values.isVirtual ? 'Virtual' : 'In-Person'}
+                    />
                     <TextField
                         error={Boolean(formik.touched.address && formik.errors.address)}
                         fullWidth
@@ -153,6 +178,7 @@ const CreateEventComponent : FC<Props> = ({ classId }) => {
                         onChange={formik.handleChange}
                         value={formik.values.address}
                         variant="outlined"
+                        disabled={formik.values.isVirtual}
                     />
                 </Stack>
                 <Button
