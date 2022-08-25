@@ -49,7 +49,10 @@ export interface ToDo {
 	description: string;
 	dueDate: Time;
 	completed: boolean;
+	beforeEvent: boolean;
 }
+export const todoTabs = ['Before Event', 'After Event', 'Completed'] as const;
+
 export const statuses = ['Not Started', 'Past Due', 'Completed'] as const;
 
 

@@ -6,16 +6,18 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 
 import useToDos from '../../../hooks/useToDos'
-import { statuses } from '../../../hooks/types'
+import { todoTabs } from '../../../hooks/types'
 import ToDo from '../../utility/ToDo';
 
 interface Props {
-    classView: string
+    classId: string
 }
 
-const ToDoList : FC<Props> = ({ classView }) => {
+const ToDoList : FC<Props> = ({ classId }) => {
 
-    const { toDoBuckets, check, uncheck } = useToDos(classView)
+    console.log(classId);
+
+    const { toDoBuckets, check, uncheck } = useToDos(classId);
 
     const [tabValue, setTabValue] = useState<number>(0)
 
@@ -25,7 +27,6 @@ const ToDoList : FC<Props> = ({ classView }) => {
 
     return (
         <Stack
-            alignItems='center'
             spacing={2}
         >
             <Tabs
@@ -35,10 +36,13 @@ const ToDoList : FC<Props> = ({ classView }) => {
                 textColor='primary'
             >
                 {
-                    statuses.map((status, index) => (
+                    todoTabs.map((status, index) => (
                         <Tab
                             key={index}
                             label={status}
+                            sx={{
+                                paddingX: '0.5rem'
+                            }}
                         />
                     ))
                 }
@@ -46,10 +50,14 @@ const ToDoList : FC<Props> = ({ classView }) => {
             <Stack
                 spacing={1}
                 width='100%'
+                sx={{
+                    maxHeight: '200px',
+                    overflowY: 'scroll',
+                }}
             >
                 {
-                    toDoBuckets[statuses[tabValue]].length > 0 ? (
-                        toDoBuckets[statuses[tabValue]].map(toDo => (
+                    toDoBuckets[todoTabs[tabValue]].length > 0 ? (
+                        toDoBuckets[todoTabs[tabValue]].map(toDo => (
                             <ToDo
                                 key={toDo.id}
                                 toDo={toDo}
@@ -58,9 +66,7 @@ const ToDoList : FC<Props> = ({ classView }) => {
                             />
                         ))
                     ) : (
-                        <Typography
-                            textAlign='center'
-                        >
+                        <Typography>
                             No To-Dos
                         </Typography>
                     )

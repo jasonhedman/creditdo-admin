@@ -4,10 +4,12 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Box, Drawer, useMediaQuery, Theme, Stack } from '@mui/material';
+
 import HomeIcon from '@mui/icons-material/Home';
 import GroupIcon from '@mui/icons-material/Group';
 import SchoolIcon from '@mui/icons-material/School';
 import HandshakeIcon from '@mui/icons-material/Handshake';
+import SavingsIcon from '@mui/icons-material/Savings';
 
 import Logo from './Logo';
 import NavItem from './NavItem';
@@ -34,6 +36,11 @@ const items = [
     href: '/work',
     icon: (<HandshakeIcon fontSize="large" />),
     title: 'Work'
+  },
+  {
+    href: '/save',
+    icon: (<SavingsIcon fontSize="large" />),
+    title: 'Save'
   }
 ];
 

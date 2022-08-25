@@ -4,10 +4,10 @@ import { collection, CollectionReference, doc, updateDoc, orderBy, query } from 
 
 import moment from "moment";
 
-import { ToDo, statuses } from "./types";
+import { ToDo, todoTabs } from "./types";
 
 type ToDoBuckets = {
-  [key in typeof statuses[number]]: ToDo[];
+  [key in typeof todoTabs[number]]: ToDo[];
 }
 
 
@@ -25,20 +25,19 @@ const useToDos = (classId : string) => {
 
     const getToDoBuckets = () : ToDoBuckets => {
         const emptyBuckets : ToDoBuckets = {
-            'Not Started': [],
-            'Past Due': [],
+            'Before Event': [],
+            'After Event': [],
             'Completed': []
         }
         if(toDos) {
             return toDos.reduce((acc, toDo) => {
                 if (toDo.completed) {
                     acc['Completed'].push(toDo);
-                }
-                else {
-                    if(moment().isAfter(toDo.dueDate.seconds * 1000)){
-                        acc['Past Due'].push(toDo);
+                } else {
+                    if(toDo.beforeEvent){
+                        acc['Before Event'].push(toDo);
                     } else {
-                        acc['Not Started'].push(toDo);
+                        acc['After Event'].push(toDo);
                     }
                 }
                 return acc;

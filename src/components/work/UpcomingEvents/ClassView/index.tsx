@@ -9,6 +9,7 @@ import { Class } from '../../../../hooks/types'
 import useEvents from '../../../../hooks/useEvents';
 import moment from 'moment';
 import { Skeleton, Typography } from '@mui/material';
+import ToDos from '../../ToDos';
 
 interface Props {
     classData: Class;
@@ -27,7 +28,9 @@ const ClassView : FC<Props> = ({ classData, filterDate }) => {
     ));
 
     return (
-        <Stack>
+        <Stack
+            spacing={2}
+        >
             <ClassHeader
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
@@ -41,19 +44,26 @@ const ClassView : FC<Props> = ({ classData, filterDate }) => {
                             height='50px'
                         />
                     ) : (
-                        eventsDisplay.length > 0 ? (
-                            eventsDisplay.map((event, index) => (
-                                <EventDisplay
-                                    key={index}
-                                    event={event}
-                                    classId={classData.id}
-                                />
-                            ))
-                        ) : (
-                            <Typography>
-                                No events found
-                            </Typography>
-                        )
+                        <>
+                            {
+                                eventsDisplay.length > 0 ? (
+                                    eventsDisplay.map((event, index) => (
+                                        <EventDisplay
+                                            key={index}
+                                            event={event}
+                                            classId={classData.id}
+                                    />
+                                    ))
+                                ) : (
+                                    <Typography>
+                                        No events found
+                                    </Typography>
+                                )
+                            }
+                            <ToDos 
+                                classId={classData.id}
+                            />
+                        </>
                     )
                     
                 )

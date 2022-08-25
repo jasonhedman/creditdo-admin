@@ -4,7 +4,6 @@ import Stack from '@mui/material/Stack'
 
 import UpcomingEvents from './UpcomingEvents'
 import Calendar from './Calendar'
-import ToDos from './ToDos'
 
 const WorkComponent : FC = () => {
 
@@ -30,7 +29,6 @@ const WorkComponent : FC = () => {
                     filterDate={filterDate}
                     setDate={setDate}
                 />
-                <ToDos />
             </Stack>
         </Stack>
     )
