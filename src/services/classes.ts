@@ -9,9 +9,12 @@ import {
 import lessons from "../data/lessons";
 import toDos from "../data/toDos";
 
-interface ClassInput {
+export interface ClassInputData {
     name: string;
-    time: string;
+    time: Date;
+}
+
+interface ClassInput extends ClassInputData {
     teacherId: string;
 }
 
@@ -21,6 +24,7 @@ export const createClass = async (classInput: ClassInput) => {
         createLessons(classDoc.id),
         createToDos(classDoc.id)
     ])
+    return classDoc.id;
 }
 
 const createLessons = async (classId: string) => {

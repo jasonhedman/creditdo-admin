@@ -8,10 +8,10 @@ import useAvatar from '../../../../../hooks/useAvatar'
 
 interface Props {
     firstName: string
-    lastName: string
+    lastInitial: string
 }
 
-const StudentDisplay : FC<Props> = ({ firstName, lastName }) => {
+const StudentDisplay : FC<Props> = ({ firstName, lastInitial }) => {
 
   const { uri } = useAvatar();
 
@@ -31,7 +31,7 @@ const StudentDisplay : FC<Props> = ({ firstName, lastName }) => {
         }}
       />
       <Typography>
-        {lastName}, {firstName}
+        {firstName} {lastInitial}.
       </Typography>
     </Stack>
   )

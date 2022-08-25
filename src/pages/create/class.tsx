@@ -7,7 +7,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 
 import DashboardLayout from '../../components/layout/DashboardLayout'
-import CreateClassComponent from '../../components/create/class'
+import CreateClassWizard from '../../components/create/class/CreateClassWizard'
 
 const CreateClass : NextPage = () => {
   return (
@@ -27,7 +27,7 @@ const CreateClass : NextPage = () => {
         <Container 
           maxWidth={false}
         >
-            <CreateClassComponent />
+          <CreateClassWizard />
         </Container>
       </Box>
     </DashboardLayout>

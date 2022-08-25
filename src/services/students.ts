@@ -2,9 +2,9 @@ import { addDoc, AddPrefixToKeys, collection, doc, updateDoc } from 'firebase/fi
 import { db } from '../firebase/clientApp'
 
 
-interface StudentInput extends AddPrefixToKeys<string, any> {
+export interface StudentInput extends AddPrefixToKeys<string, any> {
     firstName: string;
-    lastName: string;
+    lastInitial: string;
     parentEmail: string;
 }
 

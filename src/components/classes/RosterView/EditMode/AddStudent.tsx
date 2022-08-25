@@ -15,7 +15,7 @@ interface Props {
 
 const labelMapping = {
   firstName: 'First Name',
-  lastName: 'Last Name',
+  lastInitial: 'Last Initial',
   parentEmail: 'Parent Email',
 }
 
@@ -24,7 +24,7 @@ const AddStudent : FC<Props> = ({ classId }) => {
   const formik = useFormik({
     initialValues: {
       firstName: '',
-      lastName: '',
+      lastInitial: '',
       parentEmail: '',
     },
     validationSchema: Yup.object({
@@ -32,10 +32,10 @@ const AddStudent : FC<Props> = ({ classId }) => {
         .string()
         .max(255)
         .required('First name is required'),
-      lastName: Yup
+        lastInitial: Yup
         .string()
-        .max(255)
-        .required('Last name is required'),
+        .max(1, 'Must be one character')
+        .required('Last initial is required'),
       parentEmail: Yup
         .string()
         .email('Email is invalid')
@@ -44,13 +44,13 @@ const AddStudent : FC<Props> = ({ classId }) => {
     onSubmit: async () => {
       await createStudent(classId, {...formik.values});
       formik.resetForm();
-    }
+    },
+    validateOnMount: true,
   });
 
   return (
     <Stack
         direction="row"
-        alignItems='center'
         spacing={2}
     >
       {
@@ -68,12 +68,17 @@ const AddStudent : FC<Props> = ({ classId }) => {
           />
         ))
       }
-      <Button
-          variant="contained"
-          onClick={() => formik.handleSubmit()}
+      <Stack
+        justifyContent='center'
       >
-          Add
-      </Button>
+        <Button
+            variant="contained"
+            onClick={() => formik.handleSubmit()}
+            disabled={!formik.isValid}
+        >
+            Add
+        </Button>
+      </Stack>
     </Stack>
   )
 }

@@ -16,7 +16,6 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { createEvent } from '../../../services/events';
-import { FormatLineSpacing } from '@mui/icons-material';
 
 interface Props {
     classId: string;

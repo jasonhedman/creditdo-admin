@@ -27,14 +27,15 @@ const EditStudent : FC<Props> = ({ student, classId }) => {
     const formik = useFormik({
         initialValues: {
             firstName: student.firstName,
-            lastName: student.lastName,
+            lastInitial: student.lastInitial,
             parentEmail: student.parentEmail,
         },
         validationSchema: Yup.object({
             firstName: Yup.string()
                 .required('First name is required'),
-            lastName: Yup.string()
-                .required('Last name is required'),
+            lastInitial: Yup.string()
+                .required('Last initial is required')
+                .max(1, 'Must be one character'),
             parentEmail: Yup.string()
                 .email('Email is invalid')
                 .required('Email is required'),

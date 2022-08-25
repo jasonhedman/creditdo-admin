@@ -1,7 +1,7 @@
 import { db } from "../firebase/clientApp";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 
-interface EventInput {
+export interface EventInput {
     title: string;
     startDate: Date;
     endDate: Date;

@@ -24,7 +24,7 @@ const StudentRow : FC<Props> = ({ student, classId }) => {
         <StudentDisplay 
             key='student'
             firstName={student.firstName}
-            lastName={student.lastName}
+            lastInitial={student.lastInitial}
         />,
         <LessonProgress 
             key='lessonProgress'

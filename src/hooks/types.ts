@@ -39,7 +39,7 @@ export interface Lesson {
 export interface Student {
     id: string;
 	firstName: string;
-    lastName: string;
+    lastInitial: string;
 	parentEmail: string;
 }
 
