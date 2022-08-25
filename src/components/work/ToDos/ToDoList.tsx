@@ -5,9 +5,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 
-import useToDos from '../../../hooks/useToDos'
 import { todoTabs } from '../../../hooks/types'
 import ToDo from '../../utility/ToDo';
+
+import useEventToDos from '../../../hooks/useEventToDos';
 
 interface Props {
     classId: string
@@ -15,9 +16,7 @@ interface Props {
 
 const ToDoList : FC<Props> = ({ classId }) => {
 
-    console.log(classId);
-
-    const { toDoBuckets, check, uncheck } = useToDos(classId);
+    const { toDoBuckets, check, uncheck } = useEventToDos(classId);
 
     const [tabValue, setTabValue] = useState<number>(0)
 
