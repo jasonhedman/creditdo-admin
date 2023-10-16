@@ -26,7 +26,7 @@ const Login : NextPage = () => {
   const formik = useFormik({
     initialValues: {
       email: 'jason@hedmans.org',
-      password: 'Letmein123!'
+      password: 'PasswordPassword'
     },
     validationSchema: Yup.object({
       email: Yup
@@ -115,8 +115,8 @@ const Login : NextPage = () => {
               >
                 Sign In
               </Button>
-              <Typography 
-                textAlign='center' 
+              <Typography
+                textAlign='center'
                 color='error'
               >
                 {error}
